@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mdo.Website", "Mdo.Website\Mdo.Website.csproj", "{BDA6C8C0-72CD-46AF-AC7B-1B3DB0E777B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mdo.WebApi", "Mdo.WebApi\Mdo.WebApi.csproj", "{D5298FEC-9E67-49E6-BBE3-44476A7CAB8E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BDA6C8C0-72CD-46AF-AC7B-1B3DB0E777B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDA6C8C0-72CD-46AF-AC7B-1B3DB0E777B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDA6C8C0-72CD-46AF-AC7B-1B3DB0E777B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDA6C8C0-72CD-46AF-AC7B-1B3DB0E777B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5298FEC-9E67-49E6-BBE3-44476A7CAB8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5298FEC-9E67-49E6-BBE3-44476A7CAB8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5298FEC-9E67-49E6-BBE3-44476A7CAB8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5298FEC-9E67-49E6-BBE3-44476A7CAB8E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

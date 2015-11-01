@@ -1,0 +1,2 @@
+curl -X POST http://localhost:58422/login -d UserName="a" -d Password="a" -i
+curl -X POST http://localhost:58422/userSettings -H "Content-Type: application/json" --data @token.json -i
