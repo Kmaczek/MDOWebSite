@@ -80,10 +80,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="app\content\bootstrap-theme.css.map">
+    <None Include="app\content\bootstrap\bootstrap-theme.css.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="app\content\bootstrap.css.map">
+    <None Include="app\content\bootstrap\bootstrap.css.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="app\content\mdostyles.scss">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="app\fonts\glyphicons-halflings-regular.eot">
@@ -134,28 +137,39 @@
     <None Include="app\scripts\angular\errors.json" />
     <None Include="app\scripts\angular\version.json" />
     <None Include="app\scripts\jquery\jquery-2.1.4.min.map" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\content\bootstrap-theme.css">
+    <Content Include="app\content\bootstrap\bootstrap-theme.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\content\bootstrap-theme.min.css">
+    <Content Include="app\content\bootstrap\bootstrap-theme.min.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\content\bootstrap.css">
+    <Content Include="app\content\bootstrap\bootstrap.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\content\bootstrap.min.css">
+    <Content Include="app\content\bootstrap\bootstrap.min.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="app\content\img\logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\content\ui-bootstrap-csp.css">
+    <Content Include="app\content\bootstrap\ui-bootstrap-csp.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\content\mdostyles.css">
+      <DependentUpon>mdostyles.scss</DependentUpon>
+    </Content>
+    <Content Include="app\content\mdostyles.min.css">
+      <DependentUpon>mdostyles.css</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="app\fonts\glyphicons-halflings-regular.svg">
@@ -281,8 +295,6 @@
     <Content Include="index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\ngdirectives\" />

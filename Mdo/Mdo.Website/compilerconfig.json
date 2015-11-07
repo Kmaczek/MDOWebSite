@@ -1,0 +1,11 @@
+﻿[
+  {
+    "outputFile": "app/content/mdostyles.css",
+    "inputFile": "app/content/mdostyles.scss",
+    "minify": {
+        "enabled": true
+    },
+    "includeInProject": true,
+    "sourceMap": false
+  }
+]

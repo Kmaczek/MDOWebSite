@@ -1,0 +1,11 @@
+﻿$secondary-color: #dcdcdc;
+$primary-color: #333;
+
+body {
+    color: $primary-color;
+    background-color: $secondary-color;
+}
+
+.mdo-footer{
+    color: $secondary-color;
+}
