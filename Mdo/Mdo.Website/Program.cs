@@ -18,6 +18,7 @@ namespace Mdo.Website
             {
                 Console.WriteLine("WebApi Host started");
                 Console.WriteLine("Hosting on: " + url);
+                System.Diagnostics.Process.Start(url);
                 Console.ReadLine();
             }
         }
