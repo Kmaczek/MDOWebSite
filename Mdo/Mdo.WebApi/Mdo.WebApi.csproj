@@ -81,130 +81,151 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="app\scripts\angular-animate.min.js.map">
+    <None Include="app\scripts\angular\angular-animate.min.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="app\scripts\angular-aria.min.js.map">
+    <None Include="app\scripts\angular\angular-aria.min.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="app\scripts\angular-cookies.min.js.map">
+    <None Include="app\scripts\angular\angular-cookies.min.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="app\scripts\angular-loader.min.js.map">
+    <None Include="app\scripts\angular\angular-loader.min.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="app\scripts\angular-message-format.min.js.map">
+    <None Include="app\scripts\angular\angular-message-format.min.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="app\scripts\angular-messages.min.js.map">
+    <None Include="app\scripts\angular\angular-messages.min.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="app\scripts\angular-resource.min.js.map">
+    <None Include="app\scripts\angular\angular-resource.min.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="app\scripts\angular-route.min.js.map">
+    <None Include="app\scripts\angular\angular-route.min.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="app\scripts\angular-sanitize.min.js.map">
+    <None Include="app\scripts\angular\angular-sanitize.min.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="app\scripts\angular-touch.min.js.map">
+    <None Include="app\scripts\angular\angular-touch.min.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="app\scripts\angular.min.js.map">
+    <None Include="app\scripts\angular\angular.min.js.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="app\scripts\errors.json" />
-    <None Include="app\scripts\version.json" />
+    <None Include="app\scripts\angular\errors.json" />
+    <None Include="app\scripts\angular\version.json" />
+    <None Include="app\scripts\jquery\jquery-2.1.4.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\view\main\main.controller.js">
+    <Content Include="app\view\main\mainCtrl.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\view\main\main.template.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\view\user\userCtrl.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\view\user\user.template.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-animate.js">
+    <Content Include="app\scripts\angular\angular-animate.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-animate.min.js">
+    <Content Include="app\scripts\angular\angular-animate.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-aria.js">
+    <Content Include="app\scripts\angular\angular-aria.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-aria.min.js">
+    <Content Include="app\scripts\angular\angular-aria.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-cookies.js">
+    <Content Include="app\scripts\angular\angular-cookies.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-cookies.min.js">
+    <Content Include="app\scripts\angular\angular-cookies.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-csp.css">
+    <Content Include="app\scripts\angular\angular-csp.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-loader.js">
+    <Content Include="app\scripts\angular\angular-loader.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-loader.min.js">
+    <Content Include="app\scripts\angular\angular-loader.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-message-format.js">
+    <Content Include="app\scripts\angular\angular-message-format.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-message-format.min.js">
+    <Content Include="app\scripts\angular\angular-message-format.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-messages.js">
+    <Content Include="app\scripts\angular\angular-messages.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-messages.min.js">
+    <Content Include="app\scripts\angular\angular-messages.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-mocks.js">
+    <Content Include="app\scripts\angular\angular-mocks.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-resource.js">
+    <Content Include="app\scripts\angular\angular-resource.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-resource.min.js">
+    <Content Include="app\scripts\angular\angular-resource.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-route.js">
+    <Content Include="app\scripts\angular\angular-route.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-route.min.js">
+    <Content Include="app\scripts\angular\angular-route.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-sanitize.js">
+    <Content Include="app\scripts\angular\angular-sanitize.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-sanitize.min.js">
+    <Content Include="app\scripts\angular\angular-sanitize.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-scenario.js">
+    <Content Include="app\scripts\angular\angular-scenario.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-touch.js">
+    <Content Include="app\scripts\angular\angular-touch.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular-touch.min.js">
+    <Content Include="app\scripts\angular\angular-touch.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular.js">
+    <Content Include="app\scripts\angular\angular.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\angular.min.js">
+    <Content Include="app\scripts\angular\angular.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\scripts\i18n\angular-locale_en-us.js" />
-    <Content Include="app\scripts\i18n\angular-locale_pl-pl.js" />
-    <Content Include="app\scripts\i18n\angular-locale_pl.js" />
+    <Content Include="app\scripts\angular\i18n\angular-locale_en-us.js" />
+    <Content Include="app\scripts\angular\i18n\angular-locale_pl-pl.js" />
+    <Content Include="app\scripts\angular\i18n\angular-locale_pl.js" />
+    <Content Include="app\scripts\angularui\angular-ui-router.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\scripts\angularui\angular-ui-router.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\scripts\jquery\jquery-2.1.4.intellisense.js" />
+    <Content Include="app\scripts\jquery\jquery-2.1.4.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\scripts\jquery\jquery-2.1.4.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\ngdirectives\" />

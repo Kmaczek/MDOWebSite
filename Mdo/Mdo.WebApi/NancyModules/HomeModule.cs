@@ -15,6 +15,11 @@ namespace Mdo.WebApi.NancyModules
             {
                 return View["index.html"];
             };
+
+            Get["/{sth*}"] = x =>
+            {
+                return View["index.html"];
+            };
         }
     }
 }
