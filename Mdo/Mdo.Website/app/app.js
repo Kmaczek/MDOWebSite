@@ -19,6 +19,6 @@
 
     }
 
-    angular.module('mdo', ['ui.router', 'ui.bootstrap'])
+    angular.module('mdo', ['ui.router', 'ui.bootstrap', 'ngResource'])
         .config(config);
 })();    

@@ -72,8 +72,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomBootstraper.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ResponseMessage.cs" />
+    <Compile Include="Models\UserDto.cs" />
     <Compile Include="Models\UserSettings.cs" />
     <Compile Include="Modules\UserModule.cs" />
     <Compile Include="Program.cs" />

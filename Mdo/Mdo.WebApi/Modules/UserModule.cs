@@ -15,13 +15,13 @@ namespace Mdo.WebApi.Modules
     {
         private IUserRepository userRepo;
         private List<CsrfToken> tokens;
-        public UserModule()
+        public UserModule() : base("/user")
         {
             Initialize();
 
             Post["/login"] = o =>
             {
-                var user = this.Request.Form.UserName;
+                var user = this.Request.Form.Username;
                 var pass = this.Request.Form.Password;
 
                 var isLoginSuccessfull = userRepo.Login(user, pass);
@@ -44,7 +44,12 @@ namespace Mdo.WebApi.Modules
                 }, HttpStatusCode.Unauthorized);
             };
 
-            Post["/userSettings"] = o =>
+            Get["/{username}"] = o =>
+            {
+                return Response.AsJson(new UserDto() {Rank = "rookie", Username = o.username});
+            };
+
+            Post["/settings"] = o =>
             {
                 var userToken = this.Bind<BearerToken>();
                 var body = this.Request.Body.AsString();
