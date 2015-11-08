@@ -1,0 +1,23 @@
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" ui-sref="main">
+            <img class="img-responsive" alt="Brand" ng-src="app/content/img/logo.png">
+        </a>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-left">
+                <li ui-sref-active="active"><a ui-sref="user">Profile</a></li>
+                <li ui-sref-active="active"><a ui-sref="decks">Decks</a></li>
+                <li ui-sref-active="active"><a ui-sref="creator">Deck Creator</a></li>
+                <li ui-sref-active="active"><a ui-sref="cards">Card Base</a></li>
+            </ul>
+            <form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><input class="form-control navbar-form navbar-input" type="text" placeholder="login / email" ng-model="username"/></li>
+                    <li><span> </span></li>
+                    <li><input class="form-control navbar-form navbar-input" type="password" placeholder="password" ng-model="password" /></li>
+                    <li><a href="#" ng-click="login()">Login</a></li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</div>

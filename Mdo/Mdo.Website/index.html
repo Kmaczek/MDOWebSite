@@ -12,30 +12,20 @@
     <script type="text/javascript" src="app/scripts/angularui/angular-ui-router.js"></script>
     <script type="text/javascript" src="app/scripts/angularui/ui-bootstrap.js"></script>
     <script type="text/javascript" src="app/app.js"></script>
+
+    <script type="text/javascript" src="app/ngdirectives/navbar/mdoNav.js"></script>
+
     <script type="text/javascript" src="app/view/main/mainCtrl.js"></script>
     <script type="text/javascript" src="app/view/user/userCtrl.js"></script>
     <base href="/" />
     <title>MDO</title>
 </head>
-<body ng-app="mdo" class="">
-    <div class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">
-                    <img alt="Brand" ng-src="app/content/img/logo.png">
-                </a>
-                <ul class="nav navbar-nav">
-                    <li><a ui-sref="main">Home</a></li>
-                    <li><a ui-sref="user">Profile</a></li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
+<body ng-app="mdo">
+    <mdo-nav></mdo-nav>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-3"></div>
-            <div class="col-md-6">
+            <div class="col-md-6 mdo-content">
                 <h1>Mdo site {{2 + 2}}</h1>
                 <ui-view></ui-view>
             </div>
@@ -43,10 +33,9 @@
         </div>
     </div>
 
-
     <div class="navbar navbar-inverse navbar-fixed-bottom mdo-footer">
         <div class="container">
-            <p>Damokles 2015</p>
+            Damokles 2015
         </div>
     </div>
 </body>
