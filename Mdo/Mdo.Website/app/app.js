@@ -1,6 +1,9 @@
-﻿(function() {
-    function config($stateProvider, $locationProvider, $urlRouterProvider) {
+﻿(function ()
+{
+    var boot = new MdoBoot();
 
+    function config($stateProvider, $locationProvider, $urlRouterProvider)
+    {
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise("/");
 
@@ -20,5 +23,6 @@
     }
 
     angular.module('mdo', ['ui.router', 'ui.bootstrap', 'ngResource'])
+        .constant('mdoConst', boot.getData())
         .config(config);
 })();    

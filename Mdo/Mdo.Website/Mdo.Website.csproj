@@ -142,6 +142,7 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="scripts\angular.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js">
@@ -184,13 +185,19 @@
     <Content Include="app\fonts\glyphicons-halflings-regular.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\ngdirectives\navbar\mdoNav.js">
+    <Content Include="app\directives\navbar\mdoNav.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\ngdirectives\navbar\mdoNav.template.html">
+    <Content Include="app\directives\navbar\mdoNav.template.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\ngservices\user.js">
+    <Content Include="app\services\apiConsumed\user.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\services\appInfo.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\services\constants\mdoConst.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="app\scripts\angularui\angular-ui-router.js">
@@ -313,6 +320,9 @@
     <Content Include="index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="scripts\angular-mocks.js" />
+    <Content Include="scripts\angular.js" />
+    <Content Include="scripts\angular.min.js" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
