@@ -7,12 +7,12 @@
                 console.log(scope.username);
                 console.log(scope.password);
 
-                User.getUser(scope.username);
+                User.login(scope.username, scope.password);
             }
         }
 
         return {
-            templateUrl: 'app/ngdirectives/navbar/mdoNav.template.html',
+            templateUrl: 'app/directives/navbar/mdoNav.template.html',
             scope: {
                 login: '='
             },

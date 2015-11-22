@@ -142,7 +142,6 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <None Include="scripts\angular.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js">
@@ -320,9 +319,6 @@
     <Content Include="index.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="scripts\angular-mocks.js" />
-    <Content Include="scripts\angular.js" />
-    <Content Include="scripts\angular.min.js" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

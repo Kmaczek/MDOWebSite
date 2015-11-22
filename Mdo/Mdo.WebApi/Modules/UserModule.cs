@@ -21,10 +21,9 @@ namespace Mdo.WebApi.Modules
 
             Post["/login"] = o =>
             {
-                var user = this.Request.Form.Username;
-                var pass = this.Request.Form.Password;
+                var model = this.Bind<LoginData>();
 
-                var isLoginSuccessfull = userRepo.Login(user, pass);
+                var isLoginSuccessfull = userRepo.Login(model.Username, model.Password);
 
                 if (isLoginSuccessfull)
                 {
@@ -51,6 +50,8 @@ namespace Mdo.WebApi.Modules
 
             Post["/settings"] = o =>
             {
+                this.RequiresAuthentication();
+
                 var userToken = this.Bind<BearerToken>();
                 var body = this.Request.Body.AsString();
                 var tokenFind = TokenStore.FindMatching(userToken);
@@ -75,6 +76,12 @@ namespace Mdo.WebApi.Modules
 
             //this.RequiresHttps();
 
+        }
+
+        public class LoginData
+        {
+            public string Username { get; set; }
+            public string Password { get; set; } 
         }
     }
 }

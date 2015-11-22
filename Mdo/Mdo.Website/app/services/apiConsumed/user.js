@@ -4,7 +4,7 @@
         var _username = '';
         var authorized = false;
 
-        var sth = $resource('http://localhost:15555/user/:username');
+        var sth = $resource('http://localhost:15555/user/login');
 
         this.setUsername = function (username) {
             _username = username;
@@ -26,9 +26,15 @@
             });
         }
 
-        this.login = function(username, password) {
-            var user = sth.get({username: 'kmakov'}, function() {
+        this.login = function(username, password)
+        {
+            var loginData = {
+                Username: username,
+                Password: password
+            };
+            var user = sth.save(loginData, function() {
                 console.log(user);
+                return user;
             });
         }
 
