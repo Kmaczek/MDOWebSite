@@ -9,6 +9,11 @@
 
                 User.login(scope.username, scope.password);
             }
+
+            function register()
+            {
+                
+            }
         }
 
         return {

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Mdo.Persistence
 {
-    public class User
+    public class slqCOnn
     {
         private string conStr = @"Server=(localdb)\v11.0;Integrated Security=true;";
-        public User()
+        public slqCOnn()
         {
             using (var conn = new SqlConnection(conStr))
             using (var command = new SqlCommand("ProcedureName", conn)

@@ -15,6 +15,10 @@
             .state('user', {
                 url: '/user',
                 templateUrl: 'app/view/user/user.template.html'
+            })
+            .state('userRegistration', {
+                url: '/user/register',
+                templateUrl: 'app/view/registration/registration.template.html'
             });
     }
 

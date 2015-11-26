@@ -310,6 +310,12 @@
     <Content Include="app\view\main\mainCtrl.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="app\view\registration\registration.template.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\view\registration\registrationCtrl.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="app\view\user\user.template.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
