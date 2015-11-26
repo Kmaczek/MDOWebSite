@@ -5,3 +5,4 @@ Used frameworks:
 - Owin
 - Nancy
 - Angular
+- Entity Framework
