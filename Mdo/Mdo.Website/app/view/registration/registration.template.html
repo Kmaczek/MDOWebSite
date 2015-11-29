@@ -1,37 +1,38 @@
 ﻿<div ng-controller="registrationCtrl">
-    <h1>Register</h1>
     <form>
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-3">
+            <h1>Register</h1>
+            <br/>
+            <div class="row form-group">
+                <label for="input-username" class="col-md-2 input-margin">
                     Username:
-                </div>
+                </label>
                 <div class="col-md-4">
-                    <input type="text" ng-model="username"/>
+                    <input id="input-username"class="form-control" type="text" ng-model="username" placeholder="Jane Doe"/>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
+            <div class="row form-group">
+                <label for="input-email" class="col-md-2 input-margin">
                     Email:
-                </div>
+                </label>
                 <div class="col-md-4">
-                    <input type="email" ng-model="email" />
+                    <input id="input-email" class="form-control" type="email" ng-model="email" placeholder="jane@email.com"/>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
+            <div class="row form-group">
+                <label for="input-password" class="col-md-2 input-margin">
                     Password:
-                </div>
+                </label>
                 <div class="col-md-4">
-                    <input type="password" ng-model="password" />
+                    <input id="input-password" class="form-control" type="password" ng-model="password"/>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3">
+            <div class="row form-group">
+                <label for="input-password-repeat" class="col-md-2 input-margin">
                     Repeat Password:
-                </div>
+                </label>
                 <div class="col-md-4">
-                    <input type="password" ng-model="passwordCheck" />
+                    <input id="input-password-repeat"class="form-control" type="password" ng-model="passwordCheck"/>
                 </div>
             </div>
         </div>

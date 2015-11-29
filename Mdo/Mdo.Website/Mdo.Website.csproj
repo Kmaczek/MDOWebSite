@@ -72,6 +72,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\ConsoleLogger.cs" />
+    <Compile Include="Common\IMdoLogger.cs" />
     <Compile Include="HomeModule.cs" />
     <Compile Include="NancyBootstrapper.cs" />
     <Compile Include="Program.cs" />
