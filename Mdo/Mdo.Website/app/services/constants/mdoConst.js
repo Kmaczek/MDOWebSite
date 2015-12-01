@@ -5,7 +5,7 @@
 
     // CONSTANTS
     data.username = 'none';
-    data.apiUrl = 'http://localhost:15555/';
+    data.apiUrl = 'http://localhost:15555';
     data.version = '0.0.1';
 
 

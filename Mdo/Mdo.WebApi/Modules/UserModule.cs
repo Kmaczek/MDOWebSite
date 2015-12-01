@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Mdo.WebApi.Dtos;
 using Mdo.WebApi.Models;
 using Mdo.WebApi.Repos;
 using Mdo.WebApi.Repos.Mocks;
@@ -18,6 +19,8 @@ namespace Mdo.WebApi.Modules
         public UserModule() : base("/user")
         {
             Initialize();
+
+            RegisterUser();
 
             Post["/login"] = o =>
             {
@@ -45,7 +48,7 @@ namespace Mdo.WebApi.Modules
 
             Get["/{username}"] = o =>
             {
-                return Response.AsJson(new UserDto() {Rank = "rookie", Username = o.username});
+                return Response.AsJson(new UserDto() { Rank = "rookie", Username = o.username });
             };
 
             Post["/settings"] = o =>
@@ -69,6 +72,21 @@ namespace Mdo.WebApi.Modules
             };
         }
 
+        private void RegisterUser()
+        {
+            Post["/register"] = o =>
+            {
+                var model = this.Bind<UserRegistrationDto>();
+
+                if (model != null)
+                {
+                    return Response.AsJson(new ResponseMessage() { Message = "Registration Successfull" });
+                }
+
+                return Response.AsJson(new ResponseMessage() { Message = "Not Authenticated" }, HttpStatusCode.Unauthorized);
+            };
+        }
+
         private void Initialize()
         {
             userRepo = new MockedUserRepository();
@@ -81,7 +99,7 @@ namespace Mdo.WebApi.Modules
         public class LoginData
         {
             public string Username { get; set; }
-            public string Password { get; set; } 
+            public string Password { get; set; }
         }
     }
 }

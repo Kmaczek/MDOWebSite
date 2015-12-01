@@ -1,4 +1,4 @@
-﻿namespace Mdo.WebApi.Models
+﻿namespace Mdo.WebApi.Dtos
 {
     public class ResponseMessage
     {

@@ -1,8 +1,25 @@
 ﻿(function () {
-    angular.module('mdo').controller('registrationCtrl', ['$scope', function ($scope) {
-        $scope.hello = "Yo man!";
+    angular.module('mdo').controller('registrationCtrl', ['$scope', 'UserService', function ($scope, UserService) {
 
-        console.log('in register ctrl');
+        $scope.user = {
+            username: '',
+            email: '',
+            password: '',
+            passwordCheck: ''
+        }
+        
+        $scope.register = function()
+        {
+            if (fieldsValid())
+            {
+                UserService.register($scope.user);
+            }
+        }
+
+        function fieldsValid()
+        {
+            return true;
+        }
     }]);
 
 }())

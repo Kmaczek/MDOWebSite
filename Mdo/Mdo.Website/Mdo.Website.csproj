@@ -192,7 +192,10 @@
     <Content Include="app\directives\navbar\mdoNav.template.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\services\apiConsumed\user.js">
+    <Content Include="app\services\apiConsumed\userService.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\services\resources\userResource.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="app\services\appInfo.js">

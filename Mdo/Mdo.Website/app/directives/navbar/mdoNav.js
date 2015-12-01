@@ -1,5 +1,5 @@
 ﻿(function () {
-    angular.module('mdo').directive('mdoNav', ['User', function (User) {
+    angular.module('mdo').directive('mdoNav', ['UserService', function (UserService) {
         var link = function (scope, element, attrs) {
             scope.login = login;
 
@@ -7,7 +7,7 @@
                 console.log(scope.username);
                 console.log(scope.password);
 
-                User.login(scope.username, scope.password);
+                UserService.login(scope.username, scope.password);
             }
 
             function register()

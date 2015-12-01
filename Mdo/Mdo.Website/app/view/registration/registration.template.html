@@ -8,7 +8,7 @@
                     Username:
                 </label>
                 <div class="col-md-4">
-                    <input id="input-username"class="form-control" type="text" ng-model="username" placeholder="Jane Doe"/>
+                    <input id="input-username"class="form-control" type="text" ng-model="user.username" placeholder="Jane Doe"/>
                 </div>
             </div>
             <div class="row form-group">
@@ -16,7 +16,7 @@
                     Email:
                 </label>
                 <div class="col-md-4">
-                    <input id="input-email" class="form-control" type="email" ng-model="email" placeholder="jane@email.com"/>
+                    <input id="input-email" class="form-control" type="email" ng-model="user.email" placeholder="jane@email.com"/>
                 </div>
             </div>
             <div class="row form-group">
@@ -24,7 +24,7 @@
                     Password:
                 </label>
                 <div class="col-md-4">
-                    <input id="input-password" class="form-control" type="password" ng-model="password"/>
+                    <input id="input-password" class="form-control" type="password" ng-model="user.password"/>
                 </div>
             </div>
             <div class="row form-group">
@@ -32,9 +32,11 @@
                     Repeat Password:
                 </label>
                 <div class="col-md-4">
-                    <input id="input-password-repeat"class="form-control" type="password" ng-model="passwordCheck"/>
+                    <input id="input-password-repeat"class="form-control" type="user.password" ng-model="passwordCheck"/>
                 </div>
             </div>
+            <button type="submit" class="btn btn-default" ng-click="register()">Register</button>
+            <br />
         </div>
     </form>
 </div>

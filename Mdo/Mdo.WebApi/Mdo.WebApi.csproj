@@ -73,10 +73,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomBootstraper.cs" />
-    <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\ResponseMessage.cs" />
-    <Compile Include="Models\UserDto.cs" />
-    <Compile Include="Models\UserSettings.cs" />
+    <Compile Include="Dtos\LoginModel.cs" />
+    <Compile Include="Dtos\ResponseMessage.cs" />
+    <Compile Include="Dtos\UserDto.cs" />
+    <Compile Include="Dtos\UserRegistrationDto.cs" />
+    <Compile Include="Dtos\UserSettings.cs" />
     <Compile Include="Modules\UserModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
