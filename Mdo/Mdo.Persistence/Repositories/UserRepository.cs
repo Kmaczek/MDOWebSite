@@ -4,6 +4,7 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Mdo.Core;
 using Mdo.Persistence.Cfg;
 using Mdo.Persistence.Domain;
 using Mdo.Persistence.Repositories.Interfaces;
@@ -28,7 +29,19 @@ namespace Mdo.Persistence.Repositories
             return user;
         }
 
-        public User GetUser(string email)
+        public User GetByName(string username)
+        {
+            User user;
+
+            using (var context = new MdoDbContext())
+            {
+                user = context.Users.FirstOrDefault(x => x.Username == username);
+            }
+
+            return user;
+        }
+
+        public User GetByEmail(string email)
         {
             User user;
 
@@ -36,6 +49,13 @@ namespace Mdo.Persistence.Repositories
             {
                 user = context.Users.FirstOrDefault(x => x.Email == email);
             }
+
+            return user;
+        }
+
+        public User GetUser(string usernameOrEmail)
+        {
+            User user = GetByName(usernameOrEmail) ?? GetByEmail(usernameOrEmail);
 
             return user;
         }
@@ -57,5 +77,19 @@ namespace Mdo.Persistence.Repositories
                 context.SaveChanges();
             }
         }
+//
+//        public bool Login(string username, string password)
+//        {
+//            using (var context = new MdoDbContext())
+//            {
+//                var user = context.Users.Single(x => x.Username == username && x.Password == password);
+//                if (user != null)
+//                {
+//                    return true;
+//                }
+//            }
+//
+//            return false;
+//        }
     }
 }

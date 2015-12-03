@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Mdo.Core;
+using Mdo.Persistence.Domain;
+using Mdo.Persistence.Repositories;
+using Mdo.Persistence.Repositories.Interfaces;
 using Mdo.WebApi.Dtos;
-using Mdo.WebApi.Models;
-using Mdo.WebApi.Repos;
-using Mdo.WebApi.Repos.Mocks;
 using Mdo.WebApi.Security;
 using Nancy;
 using Nancy.Extensions;
@@ -20,32 +21,10 @@ namespace Mdo.WebApi.Modules
         {
             Initialize();
 
+            LoginUser();
             RegisterUser();
 
-            Post["/login"] = o =>
-            {
-                var model = this.Bind<LoginData>();
-
-                var isLoginSuccessfull = userRepo.Login(model.Username, model.Password);
-
-                if (isLoginSuccessfull)
-                {
-                    var token = new Token();
-                    TokenStore.AddToken(token);
-
-                    return Response.AsJson(new LoginModel()
-                    {
-                        Token = token.CreateBearerToken()
-                    },
-                        HttpStatusCode.Accepted);
-                }
-
-                return Response.AsJson(new ResponseMessage()
-                {
-                    Message = "Authentication Failed"
-                }, HttpStatusCode.Unauthorized);
-            };
-
+            
             Get["/{username}"] = o =>
             {
                 return Response.AsJson(new UserDto() { Rank = "rookie", Username = o.username });
@@ -72,6 +51,44 @@ namespace Mdo.WebApi.Modules
             };
         }
 
+        private void LoginUser()
+        {
+            Post["/login"] = o =>
+            {
+                var model = this.Bind<LoginDto>();
+
+                var user = userRepo.GetUser(model.UsernameOrEmail);
+                if (user == null)
+                {
+                    return Response.AsJson(new ResponseMessage
+                    {
+                        Message = "No user with this name or email."
+                    }, HttpStatusCode.BadRequest);
+                }
+
+                try
+                {
+                    if (MdoSecurity.CheckPassword(model.Password, user.Password))
+                    {
+                        return Response.AsJson(new ResponseMessage()
+                        {
+                            Message = "Login Successfull"
+                        });
+                    }
+                }
+                catch (Exception)
+                {
+//                    LogMessage
+                    throw;
+                }
+
+                return Response.AsJson(new ResponseMessage()
+                {
+                    Message = "Authentication Failed"
+                }, HttpStatusCode.Unauthorized);
+            };
+        }
+
         private void RegisterUser()
         {
             Post["/register"] = o =>
@@ -80,26 +97,43 @@ namespace Mdo.WebApi.Modules
 
                 if (model != null)
                 {
+                    var usernameExists = userRepo.GetByName(model.Username);
+                    if (usernameExists != null)
+                    {
+                        return Response.AsJson(new ResponseMessage() { Message = "Username already exists" }, HttpStatusCode.BadRequest);
+                    }
+
+                    var emailUsed = userRepo.GetByEmail(model.Email);
+                    if (emailUsed != null)
+                    {
+                        return Response.AsJson(new ResponseMessage() { Message = "Provided email is already used" }, HttpStatusCode.BadRequest);
+                    }
+
+                    var passwordToStore = MdoSecurity.CreateHashedPassword(model.Password);
+                    var user = new User()
+                    {
+                        Username = model.Username,
+                        Password = passwordToStore,
+                        Email = model.Email
+                    };
+
+                    userRepo.CreateUser(user);
+
                     return Response.AsJson(new ResponseMessage() { Message = "Registration Successfull" });
                 }
 
-                return Response.AsJson(new ResponseMessage() { Message = "Not Authenticated" }, HttpStatusCode.Unauthorized);
+                return Response.AsJson(new ResponseMessage() { Message = "Cannot bind data from body" }, HttpStatusCode.BadRequest);
             };
         }
 
         private void Initialize()
         {
-            userRepo = new MockedUserRepository();
+            userRepo = new UserRepository();
             tokens = new List<CsrfToken>();
 
             //this.RequiresHttps();
-
         }
 
-        public class LoginData
-        {
-            public string Username { get; set; }
-            public string Password { get; set; }
-        }
+        
     }
 }

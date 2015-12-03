@@ -19,10 +19,10 @@
 
         this.login = function (username, password) {
             var loginData = {
-                Username: username,
+                UsernameOrEmail: username,
                 Password: password
             };
-            var userSave = UserResource.login(
+            var userLogin = UserResource.login(
                 loginData,
                 function (data) {
                     console.log(data);
