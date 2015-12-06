@@ -1,0 +1,21 @@
+As a User I want to be able to 
+	Register to Mdo, for future personalization of service
+	Registration should be simple, fast, secure
+
+Simple:
+- User will have to give only username, his email and password to be able to register
+Fast:
+- Limited number of fields makes registration fast, also client side validation prevents from unnecessary calls to server
+Secure:
+- User need to input password twice to make sure she did typed it correctly
+- Password is then sent with POST request to server
+- Server is salting and hashing password
+
+Successfull:
+- User created her account and is redirected to homepage logged in with username she registered
+
+Failed:
+- Error is made during input phase, and user immediatelly sees popup with error
+- Email or Username that User stated, already exists, then appropriate message is displayed, after call to server
+- If unable to connect to server message is displayed
+- If occured during processing of request message is displayed

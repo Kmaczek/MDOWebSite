@@ -1,0 +1,15 @@
+As a User I want to be able to
+	Login in a safe and comfortable manner to Mdo
+	After succesful login I should know that Im logged in
+
+Safe:
+- Login request is sent with POST method
+- User is never told which input is wrong, her id (email or username) or password 
+Comfortable:
+- User is able to log in with her username or email
+
+Succes:
+- Layout slightly change, login form and register button disappears, user profile link in nav menu apears, short message is displayed
+Fail:
+- When incorrect input was sent, message is displayed
+- If server error occured mesage is displayed
