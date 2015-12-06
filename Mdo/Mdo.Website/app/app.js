@@ -2,8 +2,11 @@
 {
     var boot = new MdoBoot();
 
-    function config($stateProvider, $locationProvider, $urlRouterProvider)
+    function config($stateProvider, $locationProvider, $urlRouterProvider, appInfoProvider)
     {
+        appInfoProvider.initializeWith({
+            loggedIn: false
+        });
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise("/");
 

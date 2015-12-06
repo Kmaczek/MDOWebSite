@@ -63,7 +63,7 @@ namespace Mdo.WebApi.Modules
                     return Response.AsJson(new ResponseMessage
                     {
                         Message = "No user with this name or email."
-                    }, HttpStatusCode.BadRequest);
+                    }, HttpStatusCode.NotFound);
                 }
 
                 try

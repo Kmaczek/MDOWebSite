@@ -7,7 +7,7 @@
     data.username = 'none';
     data.apiUrl = 'http://localhost:15555';
     data.version = '0.0.1';
-
+    data.loggedIn = false;
 
     this.loadData = function(initData)
     {

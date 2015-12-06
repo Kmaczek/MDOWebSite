@@ -1,21 +1,10 @@
 ﻿(function () {
-    angular.module('mdo').service('UserService', ['UserResource', function (UserResource) {
+    angular.module('mdo').service('UserService', ['UserResource', 'appInfo', function (UserResource, appInfo) {
 
         function handleError(errorData) {
             var error = errorData.status + ': ' + errorData.data.message;
             console.log(error);
         }
-
-//        this.getUser = function (name) {
-//            var userGet = UserResource.get(
-//                { username: name },
-//                function (data) {
-//                    console.log(data);
-//                },
-//                function (err) {
-//                    handleError(err);
-//                });
-//        }
 
         this.login = function (username, password) {
             var loginData = {
@@ -24,9 +13,11 @@
             };
             var userLogin = UserResource.login(
                 loginData,
-                function (data) {
-                    console.log(data);
+                function (data)
+                {
+                    appInfo.container.loggedIn = true;
                 }, function (err) {
+                    appInfo.container.loggedIn = false;
                     handleError(err);
                 });
         }
