@@ -5,7 +5,8 @@
     function config($stateProvider, $locationProvider, $urlRouterProvider, appInfoProvider)
     {
         appInfoProvider.initializeWith({
-            loggedIn: false
+            loggedIn: false,
+            username: ''
         });
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise("/");

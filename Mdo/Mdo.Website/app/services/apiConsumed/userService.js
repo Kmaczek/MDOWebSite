@@ -15,9 +15,12 @@
                 loginData,
                 function (data)
                 {
+                    console.log(data);
                     appInfo.container.loggedIn = true;
+                    appInfo.container.username = data.username;
                 }, function (err) {
                     appInfo.container.loggedIn = false;
+                    appInfo.container.username = '';
                     handleError(err);
                 });
         }

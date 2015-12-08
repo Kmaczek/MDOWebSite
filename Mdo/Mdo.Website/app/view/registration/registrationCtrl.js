@@ -2,7 +2,6 @@
     angular.module('mdo').controller('registrationCtrl', ['$scope', 'UserService', function ($scope, UserService) {
 
         $scope.user = {
-            username: '',
             email: '',
             password: '',
             passwordCheck: ''

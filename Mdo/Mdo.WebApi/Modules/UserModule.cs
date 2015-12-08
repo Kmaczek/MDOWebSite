@@ -70,9 +70,10 @@ namespace Mdo.WebApi.Modules
                 {
                     if (MdoSecurity.CheckPassword(model.Password, user.Password))
                     {
-                        return Response.AsJson(new ResponseMessage()
+                        return Response.AsJson(new
                         {
-                            Message = "Login Successfull"
+                            Message = "Login succesful",
+                            user.Username
                         });
                     }
                 }
