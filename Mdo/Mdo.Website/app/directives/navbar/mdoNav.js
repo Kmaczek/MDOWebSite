@@ -9,9 +9,6 @@
             }
 
             function login() {
-                console.log($scope.username);
-                console.log($scope.password);
-
                 UserService.login($scope.username, $scope.password);
             }
 

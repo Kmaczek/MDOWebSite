@@ -1,9 +1,25 @@
 ﻿(function () {
     angular.module('mdo').service('UserService', ['UserResource', 'appInfo', function (UserResource, appInfo) {
 
-        function handleError(errorData) {
-            var error = errorData.status + ': ' + errorData.data.message;
-            console.log(error);
+        function handleError(errorData)
+        {
+            toastr.error(errorData.data.message, errorData.statusText);
+        }
+
+        function handleSuccessMessage(successData) {
+            var message = successData.message;
+            toastr.success(message);
+        }
+
+        function fireRequest(resource, parameters, onSuccess, onFail) {
+            resource(parameters, onSuccess, onFail);
+        }
+
+        function fireRequestDefaultError(resource, parameters, onSuccess, onFail) {
+            return resource(parameters, onSuccess, function (rejectData) {
+                onFail(rejectData);
+                handleError(rejectData);
+            });
         }
 
         this.login = function (username, password) {
@@ -11,34 +27,31 @@
                 UsernameOrEmail: username,
                 Password: password
             };
-            var userLogin = UserResource.login(
-                loginData,
-                function (data)
-                {
-                    console.log(data);
+
+            return fireRequestDefaultError(UserResource.login, loginData,
+                function (data) {
                     appInfo.container.loggedIn = true;
                     appInfo.container.username = data.username;
-                }, function (err) {
+
+                    handleSuccessMessage(data);
+                },
+                function () {
                     appInfo.container.loggedIn = false;
                     appInfo.container.username = '';
-                    handleError(err);
                 });
         }
 
-        this.register = function (userData)
-        {
+        this.register = function (userData) {
             var registrationData = {
                 Username: userData.username,
                 Email: userData.email,
                 Password: userData.password
             };
-            var userRegister = UserResource.register(
-                registrationData,
-                function (data) {
+
+            return fireRequestDefaultError(UserResource.register, registrationData,
+                function(data)
+                {
                     console.log(data);
-                },
-                function (err) {
-                    handleError(err);
                 });
         }
 

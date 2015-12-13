@@ -5,7 +5,7 @@
         </a>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
-                <li ui-sref-active="active"><a ui-sref="user">Profile</a></li>
+                <li ng-show="shared.loggedIn" ui-sref-active="active"><a ui-sref="user">Profile</a></li>
                 <li ui-sref-active="active"><a ui-sref="decks">Decks</a></li>
                 <li ui-sref-active="active"><a ui-sref="creator">Deck Creator</a></li>
                 <li ui-sref-active="active"><a ui-sref="cards">Card Base</a></li>

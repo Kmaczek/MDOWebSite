@@ -72,7 +72,7 @@ namespace Mdo.WebApi.Modules
                     {
                         return Response.AsJson(new
                         {
-                            Message = "Login succesful",
+                            Message = "Login successful",
                             user.Username
                         });
                     }
@@ -85,7 +85,7 @@ namespace Mdo.WebApi.Modules
 
                 return Response.AsJson(new ResponseMessage()
                 {
-                    Message = "Authentication Failed"
+                    Message = "Provided password does not match this account"
                 }, HttpStatusCode.Unauthorized);
             };
         }

@@ -18,8 +18,8 @@ namespace Mdo.WebApi
                 ctx.Response.Headers.Add("Access-Control-Allow-Origin", "http://localhost:12345");
                 ctx.Response.Headers.Add("Access-Control-Allow-Methods", "POST,GET,DELETE,PUT,OPTIONS");
                 ctx.Response.Headers.Add("Access-Control-Allow-Credentials", "true");
-                ctx.Response.Headers.Add("Access-Control-Allow-Headers", "Accept,Origin,Content-type,MY_HEADER");
-                ctx.Response.Headers.Add("Access-Control-Expose-Headers", "Accept,Origin,Content-type,MY_HEADER");
+                ctx.Response.Headers.Add("Access-Control-Allow-Headers", "Accept,Origin,Content-type");
+                ctx.Response.Headers.Add("Access-Control-Expose-Headers", "Accept,Origin,Content-type,Status-Code");
             });
 
             base.ApplicationStartup(container, pipelines);
