@@ -342,6 +342,11 @@
     <Content Include="app\scripts\toastr\toastr.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="app\scripts\linq\linq-vsdoc.js" />
+    <Content Include="app\scripts\linq\linq.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\scripts\linq\linq.min.js" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
