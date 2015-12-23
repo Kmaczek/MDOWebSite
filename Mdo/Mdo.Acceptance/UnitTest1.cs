@@ -40,8 +40,8 @@ namespace Mdo.Acceptance
             var pass = wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[3]/input")));
             var loginBtn = wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[4]/a")));
 
-            login.SendKeys("wes");
-            pass.SendKeys("wes");
+            login.SendKeys("dk");
+            pass.SendKeys("dk");
             loginBtn.Click();
             var result = phantomdDriver.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/ul[2]/li"));
             Assert.IsTrue(result.Text.Contains("wes"));

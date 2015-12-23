@@ -91,9 +91,6 @@
     <Compile Include="Modules\UserModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repos\IUserRepository.cs" />
-    <Compile Include="Repos\Mocks\MockedUserRepository.cs" />
-    <Compile Include="Repos\UserRepository.cs" />
     <Compile Include="Security\BearerToken.cs" />
     <Compile Include="Security\Token.cs" />
     <Compile Include="Security\TokenStore.cs" />
@@ -111,6 +108,10 @@
     <ProjectReference Include="..\Mdo.Persistence\Mdo.Persistence.csproj">
       <Project>{C3310B3A-231B-4EA6-B67B-B343DB27DFCD}</Project>
       <Name>Mdo.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PersistenceMocks\PersistenceMocks.csproj">
+      <Project>{1AE497F1-6C61-4BD0-87E5-70487F33CF3D}</Project>
+      <Name>PersistenceMocks</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

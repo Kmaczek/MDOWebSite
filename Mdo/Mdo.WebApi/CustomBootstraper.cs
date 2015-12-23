@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Configuration;
+using Mdo.Persistence.Repositories;
+using Mdo.Persistence.Repositories.Interfaces;
 using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.TinyIoc;
+using PersistenceMocks;
 
 namespace Mdo.WebApi
 {
@@ -22,7 +22,28 @@ namespace Mdo.WebApi
                 ctx.Response.Headers.Add("Access-Control-Expose-Headers", "Accept,Origin,Content-type,Status-Code");
             });
 
+            var isTest = Boolean.Parse(ConfigurationManager.AppSettings.Get("test"));
+
+            if (!isTest)
+            {
+                RegisterDependencies(container);
+            }
+            else
+            {
+                RegisterTestDependencies(container);
+            }
+
             base.ApplicationStartup(container, pipelines);
+        }
+
+        private static void RegisterDependencies(TinyIoCContainer container)
+        {
+            container.Register<IUserRepository, UserRepository>();
+        }
+
+        private static void RegisterTestDependencies(TinyIoCContainer container)
+        {
+            container.Register<IUserRepository, UserRepositoryMock>();
         }
     }
 }

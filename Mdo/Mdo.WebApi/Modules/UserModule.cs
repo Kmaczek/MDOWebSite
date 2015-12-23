@@ -15,10 +15,11 @@ namespace Mdo.WebApi.Modules
 {
     public class UserModule : NancyModule
     {
-        private IUserRepository userRepo;
+        private IUserRepository userRepository;
         private List<CsrfToken> tokens;
-        public UserModule() : base("/user")
+        public UserModule(IUserRepository userRepo) : base("/user")
         {
+            userRepository = userRepo;
             Initialize();
 
             LoginUser();
@@ -57,7 +58,7 @@ namespace Mdo.WebApi.Modules
             {
                 var model = this.Bind<LoginDto>();
 
-                var user = userRepo.GetUser(model.UsernameOrEmail);
+                var user = userRepository.GetUser(model.UsernameOrEmail);
                 if (user == null)
                 {
                     return Response.AsJson(new ResponseMessage
@@ -98,13 +99,13 @@ namespace Mdo.WebApi.Modules
 
                 if (model != null)
                 {
-                    var usernameExists = userRepo.GetByName(model.Username);
+                    var usernameExists = userRepository.GetByName(model.Username);
                     if (usernameExists != null)
                     {
                         return Response.AsJson(new ResponseMessage() { Message = "Username already exists" }, HttpStatusCode.BadRequest);
                     }
 
-                    var emailUsed = userRepo.GetByEmail(model.Email);
+                    var emailUsed = userRepository.GetByEmail(model.Email);
                     if (emailUsed != null)
                     {
                         return Response.AsJson(new ResponseMessage() { Message = "Provided email is already used" }, HttpStatusCode.BadRequest);
@@ -118,7 +119,7 @@ namespace Mdo.WebApi.Modules
                         Email = model.Email
                     };
 
-                    userRepo.CreateUser(user);
+                    userRepository.CreateUser(user);
 
                     return Response.AsJson(new ResponseMessage() { Message = "Registration Successfull" });
                 }
@@ -129,12 +130,10 @@ namespace Mdo.WebApi.Modules
 
         private void Initialize()
         {
-            userRepo = new UserRepository();
+//            userRepository = new UserRepository();
             tokens = new List<CsrfToken>();
 
             //this.RequiresHttps();
         }
-
-        
     }
 }

@@ -4,7 +4,7 @@ namespace Mdo.Persistence.Cfg
 {
     using System.Data.Entity;
 
-    public partial class MdoDbContext : DbContext
+    public class MdoDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
 

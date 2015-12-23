@@ -1,16 +1,15 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using Nancy;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Mdo.WebApi")]
+[assembly: AssemblyTitle("PersistenceMocks")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Mdo.WebApi")]
+[assembly: AssemblyProduct("PersistenceMocks")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -21,8 +20,7 @@ using Nancy;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d5298fec-9e67-49e6-bbe3-44476a7cab8e")]
-[assembly: IncludeInNancyAssemblyScanning]
+[assembly: Guid("1ae497f1-6c61-4bd0-87e5-70487f33cf3d")]
 
 // Version information for an assembly consists of the following four values:
 //
