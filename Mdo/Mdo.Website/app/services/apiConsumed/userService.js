@@ -1,5 +1,5 @@
 ﻿(function () {
-    angular.module('mdo').service('UserService', ['UserResource', 'appInfo', function (UserResource, appInfo) {
+    angular.module('mdo').service('UserService', ['UserResource', 'appInfo', 'toastr', function (UserResource, appInfo, toastr) {
 
         function handleError(errorData)
         {
