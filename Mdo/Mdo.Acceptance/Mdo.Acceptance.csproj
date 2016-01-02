@@ -67,12 +67,15 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Selenium\MainPage.cs" />
+    <Compile Include="Selenium\PageNavigator.cs" />
     <Compile Include="UserLoginTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

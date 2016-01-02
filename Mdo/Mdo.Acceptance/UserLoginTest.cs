@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
+using Mdo.Acceptance.Selenium;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -11,59 +13,52 @@ namespace Mdo.Acceptance
     [TestClass]
     public class UserLoginTest
     {
-        IWebDriver phantomdDriver;
-        private WebDriverWait wait;
-        private string url = @"http://localhost:12345/";
+        private static IWebDriver driver = new PhantomJSDriver();
+        private MainPage mainPage;
+
+        [ClassCleanup]
+        public static void ClassCleanup()
+        {
+            driver.Quit();
+            driver.Dispose();
+        }
 
         [TestInitialize]
         public void Setup()
         {
-            phantomdDriver = new PhantomJSDriver();
-            phantomdDriver.Navigate().GoToUrl(url);
-            phantomdDriver.Manage().Window.Maximize();
-            wait = new WebDriverWait(phantomdDriver, new TimeSpan(0, 0, 0, 100));
+            if (mainPage == null)
+            {
+                mainPage = new MainPage(driver);
+            }
+
+            WaitSomeTime();
+            mainPage.Reset();
         }
 
         [TestCleanup]
         public void Cleanup()
         {
-            phantomdDriver.Quit();
-            phantomdDriver.Dispose();
         }
 
-        private void WaitSomeTime()
+        private void WaitSomeTime(int timeInMs = 100)
         {
-            Thread.Sleep(new TimeSpan(0, 0, 0, 0, 100));
+            Thread.Sleep(new TimeSpan(0, 0, 0, 0, timeInMs));
         }
 
         [TestMethod]
         public void afeter_successfull_logging_in_username_should_be_displayed()
         {
-            var login = wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[1]/input")));
-            var pass = wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[3]/input")));
-            var loginBtn = wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[4]/a")));
+            mainPage.Login("dk", "dk");
 
-            login.SendKeys("dk");
-            pass.SendKeys("dk");
-            loginBtn.Click();
-
-            WaitSomeTime();
-
-            var result = wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/ul[2]/li")));
-            Assert.IsTrue(result.Text.Contains("dk"), result.Text + ": Should contain 'dk'");
+            Assert.IsTrue(mainPage.LoginUsername.Text.Contains("dk"));
         }
 
         [TestMethod]
-        public void afeter_successffull_logging_in_message_message_is_displayed()
+        public void afeter_successffull_logging_in_message_is_displayed()
         {
-            var login = wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[1]/input")));
-            var pass = wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[3]/input")));
-            var loginBtn = wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[4]/a")));
+            mainPage.Login("dk", "dk");
 
-            login.SendKeys("dk");
-            pass.SendKeys("dk");
-            loginBtn.Click();
-            var message = wait.Until(d => d.FindElement(By.XPath("//*[@id='toast-container']/div/div[1]/div")));
+            var message = mainPage.ToastrMessages.First();
             Assert.IsTrue(message.Text.ToLowerInvariant().Contains("login successful"));
         }
     }
