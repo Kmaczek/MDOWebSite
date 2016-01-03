@@ -2,11 +2,13 @@
 using System.Linq;
 using System.Threading;
 using Mdo.Acceptance.Selenium;
+using Mdo.Acceptance.Selenium.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.PhantomJS;
 using OpenQA.Selenium.Support.UI;
+using PersistenceMocks;
 
 namespace Mdo.Acceptance
 {
@@ -48,18 +50,36 @@ namespace Mdo.Acceptance
         [TestMethod]
         public void afeter_successfull_logging_in_username_should_be_displayed()
         {
-            mainPage.Login("dk", "dk");
+            mainPage.Login(UserWarehouse.StdUsername, UserWarehouse.StdPassword);
 
-            Assert.IsTrue(mainPage.LoginUsername.Text.Contains("dk"));
+            Assert.IsTrue(mainPage.LoginUsername.Text.Contains(UserWarehouse.StdUsername));
+        }
+
+        [TestMethod]
+        public void logging_with_email_is_possible()
+        {
+            mainPage.Login(UserWarehouse.StdEmail, UserWarehouse.StdPassword);
+
+            Assert.IsTrue(mainPage.LoginUsername.Text.Contains(UserWarehouse.StdUsername));
         }
 
         [TestMethod]
         public void afeter_successffull_logging_in_message_is_displayed()
         {
-            mainPage.Login("dk", "dk");
+            mainPage.Login(UserWarehouse.StdUsername, UserWarehouse.StdPassword);
 
-            var message = mainPage.ToastrMessages.First();
-            Assert.IsTrue(message.Text.ToLowerInvariant().Contains("login successful"));
+            var toast = mainPage.Toasts.Messages.First();
+            Assert.IsTrue(toast.GetToastMessage().Text.ToLowerInvariant().Contains("login successful"));
+        }
+
+        [TestMethod]
+        public void giving_incorrect_credentials_will_fail_logging_in_and_display_message()
+        {
+            mainPage.Login(UserWarehouse.FakeUsername, UserWarehouse.FakePassword);
+
+            var toast = mainPage.Toasts.Messages.First();
+            Assert.IsTrue(toast.GetToastMessage().Text.ToLowerInvariant().Contains("no user with this name"));
+            Assert.IsTrue(toast.GetToastType().ToLowerInvariant().Contains("error"));
         }
     }
 }

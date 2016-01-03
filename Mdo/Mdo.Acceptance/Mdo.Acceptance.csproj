@@ -67,6 +67,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Selenium\Elements\ToastrMessages.cs" />
+    <Compile Include="Selenium\Extensions\ToastsExtensions.cs" />
     <Compile Include="Selenium\MainPage.cs" />
     <Compile Include="Selenium\PageNavigator.cs" />
     <Compile Include="UserLoginTest.cs" />
@@ -75,7 +77,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\PersistenceMocks\PersistenceMocks.csproj">
+      <Project>{1AE497F1-6C61-4BD0-87E5-70487F33CF3D}</Project>
+      <Name>PersistenceMocks</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

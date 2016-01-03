@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading;
+using Mdo.Acceptance.Selenium.Elements;
 using OpenQA.Selenium;
 using OpenQA.Selenium.PhantomJS;
 using OpenQA.Selenium.Support.UI;
+using PersistenceMocks;
 
 namespace Mdo.Acceptance.Selenium
 {
@@ -12,6 +14,7 @@ namespace Mdo.Acceptance.Selenium
         private IWebDriver driver;
         private WebDriverWait wait;
         private string url = @"http://localhost:12345/";
+        private ToastrMessages toasts;
 
         public IWebElement LoginInput
         {
@@ -43,9 +46,11 @@ namespace Mdo.Acceptance.Selenium
         {
             get
             {
-                return wait.Until(d => d.FindElements(By.XPath("//*[@id='toast-container']/div/div[1]/div")));
+                return wait.Until(d => d.FindElements(By.XPath("//*[@id='toast-container']/div")));
             }
         }
+
+        public ToastrMessages Toasts => toasts;
 
         public MainPage(IWebDriver driver)
         {
@@ -56,23 +61,17 @@ namespace Mdo.Acceptance.Selenium
 
         public void Login(string username, string password)
         {
-            LoginInput.SendKeys("dk");
-            PasswordInput.SendKeys("dk");
+            LoginInput.SendKeys(username);
+            PasswordInput.SendKeys(password);
             LoginButton.Click();
 
             WaitSomeTime();
-//
-//            LoginUsername = wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/ul[2]/li")));
-//            ToastrMessages = wait.Until(d => d.FindElements(By.XPath("//*[@id='toast-container']/div/div[1]/div")));
         }
 
         public void Reset()
         {
             driver.Navigate().Refresh();
             driver.Manage().Cookies.DeleteAllCookies();
-//            driver.Navigate().GoToUrl(url);
-            //driver.Manage().Window.Maximize();
-            //wait = new WebDriverWait(driver: this.driver, timeout: new TimeSpan(0, 0, 0, 100));
         }
 
         private void SetDriver(IWebDriver driver)
@@ -86,9 +85,8 @@ namespace Mdo.Acceptance.Selenium
 
         private void InitializeElements()
         {
-//            var login = wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[1]/input")));
-//            PasswordInput = wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[3]/input")));
-//            LoginButton = wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[4]/a")));
+            toasts = new ToastrMessages(wait);
+            WaitSomeTime();
         }
 
         private void GoToMainPage()

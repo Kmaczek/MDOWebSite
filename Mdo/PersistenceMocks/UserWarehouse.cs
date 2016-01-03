@@ -8,10 +8,13 @@ namespace PersistenceMocks
 {
     public static class UserWarehouse
     {
-        public static readonly string StdPassword = "dk";
-        public static readonly string StdUsername = "dk";
-        public static readonly string StdEmail = "dk@dk.com";
+        public static readonly string StdPassword = "stdPass";
+        public static readonly string StdUsername = "stdUsername";
+        public static readonly string StdEmail = "std@email.com";
         public static readonly int StdId = 1;
+
+        public static readonly string FakeUsername = "fakeUsername";
+        public static readonly string FakePassword = "fakePass";
 
         public static List<User> Users = new List<User>();
 

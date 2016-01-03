@@ -29,7 +29,8 @@
         angular.extend(toastrConfig, {
             preventOpenDuplicates: true,
             progressBar: true,
-            timeOut: 200000
+            timeOut: 200000,
+            extendedTimeOut: 200000
         });
     }
 

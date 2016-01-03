@@ -22,7 +22,8 @@ namespace Mdo.WebApi
                 ctx.Response.Headers.Add("Access-Control-Expose-Headers", "Accept,Origin,Content-type,Status-Code");
             });
 
-            var isTest = Boolean.Parse(ConfigurationManager.AppSettings.Get("test"));
+            bool isTest;
+            Boolean.TryParse(ConfigurationManager.AppSettings.Get("test"), out isTest);
 
             if (!isTest)
             {
