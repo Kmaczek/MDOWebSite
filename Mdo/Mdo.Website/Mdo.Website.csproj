@@ -91,16 +91,16 @@
     <None Include="app\content\mdostyles.scss">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="app\fonts\glyphicons-halflings-regular.eot">
+    <None Include="app\content\fonts\glyphicons-halflings-regular.eot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="app\fonts\glyphicons-halflings-regular.ttf">
+    <None Include="app\content\fonts\glyphicons-halflings-regular.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="app\fonts\glyphicons-halflings-regular.woff">
+    <None Include="app\content\fonts\glyphicons-halflings-regular.woff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="app\fonts\glyphicons-halflings-regular.woff2">
+    <None Include="app\content\fonts\glyphicons-halflings-regular.woff2">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="app\scripts\angular\angular-animate.min.js.map">
@@ -186,7 +186,7 @@
     <Content Include="app\content\toastr\angular-toastr.min.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\fonts\glyphicons-halflings-regular.svg">
+    <Content Include="app\content\fonts\glyphicons-halflings-regular.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="app\directives\navbar\mdoNav.js">
@@ -324,10 +324,31 @@
     <Content Include="app\view\main\mainCtrl.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="app\view\registration\messages\emailMessages.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\view\registration\messages\passwordMessages.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\view\registration\messages\repeatMessages.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\view\registration\messages\usernameMessages.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="app\view\registration\registration.template.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="app\view\registration\registrationCtrl.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\view\registration\validation\email.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\view\registration\validation\passRepeat.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\view\registration\validation\required.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="app\view\user\user.template.html">

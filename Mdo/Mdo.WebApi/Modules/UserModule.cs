@@ -44,7 +44,7 @@ namespace Mdo.WebApi.Modules
                     return Response.AsJson(new UserSettings()
                     {
                         Email = "flosbox@gmail.com",
-                        UserName = "Kmaczek"
+                        UserName = "DK"
                     });
                 }
 
@@ -61,10 +61,7 @@ namespace Mdo.WebApi.Modules
                 var user = userRepository.GetUser(model.UsernameOrEmail);
                 if (user == null)
                 {
-                    return Response.AsJson(new ResponseMessage
-                    {
-                        Message = "No user with this name or email."
-                    }, HttpStatusCode.NotFound);
+                    return LoginFailResponse();
                 }
 
                 try
@@ -84,11 +81,16 @@ namespace Mdo.WebApi.Modules
                     throw;
                 }
 
-                return Response.AsJson(new ResponseMessage()
-                {
-                    Message = "Provided password does not match this account"
-                }, HttpStatusCode.Unauthorized);
+                return LoginFailResponse();
             };
+        }
+
+        private Response LoginFailResponse()
+        {
+            return Response.AsJson(new 
+            {
+                Message = "Incorrect login, e-mail or password"
+            }, HttpStatusCode.Unauthorized);
         }
 
         private void RegisterUser()

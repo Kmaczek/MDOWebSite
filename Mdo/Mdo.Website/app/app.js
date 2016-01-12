@@ -29,8 +29,8 @@
         angular.extend(toastrConfig, {
             preventOpenDuplicates: true,
             progressBar: true,
-            timeOut: 200000,
-            extendedTimeOut: 200000
+            timeOut: 2000,
+            extendedTimeOut: 2000
         });
     }
 
@@ -38,7 +38,7 @@
 
     }
 
-    angular.module('mdo', ['ui.router', 'ui.bootstrap', 'ngResource', 'ngAnimate', 'toastr'])
+    angular.module('mdo', ['ui.router', 'ui.bootstrap', 'ngResource', 'ngAnimate', 'ngMessages', 'toastr'])
         .constant('mdoConst', boot.getData())
         .config(config);
 })();    

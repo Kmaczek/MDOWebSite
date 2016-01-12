@@ -75,11 +75,17 @@ namespace Mdo.Acceptance
         [TestMethod]
         public void giving_incorrect_credentials_will_fail_logging_in_and_display_message()
         {
-            mainPage.Login(UserWarehouse.FakeUsername, UserWarehouse.FakePassword);
+            mainPage.Login(UserWarehouse.FakeUsername, UserWarehouse.StdPassword);
 
             var toast = mainPage.Toasts.Messages.First();
-            Assert.IsTrue(toast.GetToastMessage().Text.ToLowerInvariant().Contains("no user with this name"));
+            Assert.IsTrue(toast.GetToastMessage().Text.ToLowerInvariant().Contains("incorrect login, e-mail or password"));
             Assert.IsTrue(toast.GetToastType().ToLowerInvariant().Contains("error"));
+            toast.Click();
+
+            mainPage.Login(UserWarehouse.StdUsername, UserWarehouse.FakePassword);
+            WaitSomeTime();
+            var wrongPassToast = mainPage.Toasts.Messages.First();
+            Assert.IsTrue(wrongPassToast.GetToastMessage().Text.ToLowerInvariant().Contains("incorrect login, e-mail or password"));
         }
     }
 }
