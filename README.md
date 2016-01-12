@@ -6,3 +6,4 @@ Used frameworks:
 - Nancy
 - Angular
 - Entity Framework
+- Selenium(PhantomDriver)
