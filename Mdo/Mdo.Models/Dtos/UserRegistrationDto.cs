@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Mdo.WebApi.Dtos
+﻿namespace Mdo.Models.Dtos
 {
     public class UserRegistrationDto
     {

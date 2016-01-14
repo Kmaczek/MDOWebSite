@@ -53,39 +53,35 @@ body {
 
 .valid {
     border: 3px solid #00a30d;
-    /*border: 3px solid transparent;
-    border-radius: 4px;
-    -moz-border-image: -moz-linear-gradient(top left, #4bc700 0%, #006f06 100%);
-    -webkit-border-image: -webkit-linear-gradient(top left, #4bc700 0%, #006f06 100%);
-     border-image: radial-gradient(ellipse at center, rgba(100,165,23,1) 0%, rgba(80,225,82,0.66) 73%, rgba(145,232,66,0.54) 97%, rgba(145,232,66,0.53) 100%);
-    border-image: linear-gradient(to bottom right, #4bc700 0%, #006f06 100%);
-    border-image-slice: 1;*/
 }
 
 .invalid {
-    /*border: 3px solid transparent;
-    border-radius: inherit;
-    -moz-border-image: -moz-linear-gradient(top left, #cc4501 0%, #ba0000 100%);
-    -webkit-border-image: -webkit-linear-gradient(top left, #cc4501 0%, #ba0000 100%);
-    border-image: linear-gradient(to bottom right, #cc4501 0%, #ba0000 100%);
-    border-image-slice: 1;*/
     border: 3px solid #ba0000;
 }
 
-.val-box-message{
+.reg-box-message{
     margin-top: 5px;
     padding-left: 25px;
     background: rgba(200, 50, 50, .5);
     border-radius: 5px;
 }
 
-.val-msg{
+.reg-msg{
     color: #831111;
     font-weight: bold;
 }
 
-.val-glyph{
+.reg-glyph{
     color: #00c30d;
     font-size: xx-large;
     padding-left: 0;
+}
+
+.reg-dirty{
+    margin-left: 15px;
+    font-size: medium;
+}
+
+.reg-submit{
+    margin-bottom: 20px;
 }

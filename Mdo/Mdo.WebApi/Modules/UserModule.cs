@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Mdo.Core;
-using Mdo.Persistence.Domain;
-using Mdo.Persistence.Repositories;
+using Mdo.Models;
+using Mdo.Models.Dtos;
 using Mdo.Persistence.Repositories.Interfaces;
-using Mdo.WebApi.Dtos;
 using Mdo.WebApi.Security;
 using Nancy;
 using Nancy.Extensions;
@@ -15,7 +14,7 @@ namespace Mdo.WebApi.Modules
 {
     public class UserModule : NancyModule
     {
-        private IUserRepository userRepository;
+        private readonly IUserRepository userRepository;
         private List<CsrfToken> tokens;
         public UserModule(IUserRepository userRepo) : base("/user")
         {
@@ -104,30 +103,33 @@ namespace Mdo.WebApi.Modules
                     var usernameExists = userRepository.GetByName(model.Username);
                     if (usernameExists != null)
                     {
-                        return Response.AsJson(new ResponseMessage() { Message = "Username already exists" }, HttpStatusCode.BadRequest);
+                        return ReturnInvalidInput("Username already exists");
                     }
 
                     var emailUsed = userRepository.GetByEmail(model.Email);
                     if (emailUsed != null)
                     {
-                        return Response.AsJson(new ResponseMessage() { Message = "Provided email is already used" }, HttpStatusCode.BadRequest);
+                        return ReturnInvalidInput("Provided email is already used");
                     }
 
-                    var passwordToStore = MdoSecurity.CreateHashedPassword(model.Password);
-                    var user = new User()
+                    if (!MdoSecurity.IsPsswordValid(model.Password))
                     {
-                        Username = model.Username,
-                        Password = passwordToStore,
-                        Email = model.Email
-                    };
+                        return ReturnInvalidInput("Password is to short");
+                    }
 
-                    userRepository.CreateUser(user);
+                    var user = new UserModel(model);
+                    userRepository.CreateUser(user.ToUser());
 
                     return Response.AsJson(new ResponseMessage() { Message = "Registration Successfull" });
                 }
 
-                return Response.AsJson(new ResponseMessage() { Message = "Cannot bind data from body" }, HttpStatusCode.BadRequest);
+                return Response.AsJson(new ResponseMessage() { Message = "Cannot process passed data. Most likely invalid format" }, HttpStatusCode.BadRequest);
             };
+        }
+
+        private Response ReturnInvalidInput(string message)
+        {
+            return Response.AsJson(new ResponseMessage() { Message = message }, HttpStatusCode.BadRequest);
         }
 
         private void Initialize()

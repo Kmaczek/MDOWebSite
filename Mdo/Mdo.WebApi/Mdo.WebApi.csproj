@@ -82,18 +82,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomBootstraper.cs" />
-    <Compile Include="Dtos\LoginDto.cs" />
-    <Compile Include="Dtos\LoginModel.cs" />
-    <Compile Include="Dtos\ResponseMessage.cs" />
-    <Compile Include="Dtos\UserDto.cs" />
-    <Compile Include="Dtos\UserRegistrationDto.cs" />
-    <Compile Include="Dtos\UserSettings.cs" />
     <Compile Include="Modules\UserModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Security\BearerToken.cs" />
-    <Compile Include="Security\Token.cs" />
-    <Compile Include="Security\TokenStore.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -101,12 +92,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Mdo.Core\Mdo.Core.csproj">
-      <Project>{6F6B3AD4-1501-4718-BC54-F56610BAFF2D}</Project>
-      <Name>Mdo.Core</Name>
+    <ProjectReference Include="..\Mdo.Common\Mdo.Common.csproj">
+      <Project>{7E454380-5F93-444B-A0A1-D18B7DB9190C}</Project>
+      <Name>Mdo.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mdo.Models\Mdo.Models.csproj">
+      <Project>{d704768b-b024-4608-9fb1-a0bbafeef47f}</Project>
+      <Name>Mdo.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\Mdo.Persistence\Mdo.Persistence.csproj">
-      <Project>{C3310B3A-231B-4EA6-B67B-B343DB27DFCD}</Project>
+      <Project>{c3310b3a-231b-4ea6-b67b-b343db27dfcd}</Project>
       <Name>Mdo.Persistence</Name>
     </ProjectReference>
     <ProjectReference Include="..\PersistenceMocks\PersistenceMocks.csproj">

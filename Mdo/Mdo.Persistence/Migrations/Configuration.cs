@@ -1,4 +1,4 @@
-using Mdo.Persistence.Domain;
+using Mdo.Persistence.Entities;
 
 namespace Mdo.Persistence.Migrations
 {

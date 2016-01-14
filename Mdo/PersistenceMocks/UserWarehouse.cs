@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Mdo.Core;
-using Mdo.Persistence.Domain;
+using Mdo.Persistence.Entities;
 
 namespace PersistenceMocks
 {

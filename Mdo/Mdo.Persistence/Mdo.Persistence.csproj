@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cfg\MdoDbContext.cs" />
-    <Compile Include="Domain\User.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Migrations\201511232256010_InitialMigration.cs" />
     <Compile Include="Migrations\201511232256010_InitialMigration.Designer.cs">
       <DependentUpon>201511232256010_InitialMigration.cs</DependentUpon>
@@ -76,12 +76,6 @@
     <EmbeddedResource Include="Migrations\201511232256010_InitialMigration.resx">
       <DependentUpon>201511232256010_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Mdo.Core\Mdo.Core.csproj">
-      <Project>{6F6B3AD4-1501-4718-BC54-F56610BAFF2D}</Project>
-      <Name>Mdo.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

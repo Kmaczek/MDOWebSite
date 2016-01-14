@@ -1,4 +1,4 @@
-﻿using Mdo.Persistence.Domain;
+﻿using Mdo.Persistence.Entities;
 using Mdo.Persistence.Repositories.Interfaces;
 
 namespace PersistenceMocks

@@ -1,4 +1,4 @@
-using Mdo.Persistence.Domain;
+using Mdo.Persistence.Entities;
 
 namespace Mdo.Persistence.Cfg
 {
@@ -12,7 +12,6 @@ namespace Mdo.Persistence.Cfg
             : base("name=MdoDbContext")
         {
         }
-
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Mdo.Persistence.Domain
+namespace Mdo.Persistence.Entities
 {
     public class User
     {

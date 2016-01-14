@@ -1,4 +1,4 @@
-﻿namespace Mdo.WebApi.Dtos
+﻿namespace Mdo.Models.Dtos
 {
     public class UserDto
     {

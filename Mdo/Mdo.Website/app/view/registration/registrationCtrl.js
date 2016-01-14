@@ -1,6 +1,9 @@
 ﻿(function () {
     angular.module('mdo').controller('registrationCtrl', ['$scope', 'UserService', function ($scope, UserService) {
 
+        var registerClicked = false;
+        $scope.showValidAndDirtyMessage = showValidAndDirtyMessage;
+
         $scope.user = {
             username: '',
             email: '',
@@ -8,17 +11,26 @@
             passwordCheck: ''
         }
 
-        $scope.register = function () {
-            if (fieldsValid()) {
+        $scope.registerUser = function () {
+            registerClicked = true;
+            if (areFieldsValidAndDirty()) {
                 UserService.register($scope.user);
             }
         }
 
-        function fieldsValid() {
-            if ($scope.user.email > 0) {
+        function showValidAndDirtyMessage() {
+            return registerClicked && !areFieldsValidAndDirty();
+        }
 
-            }
-            return true;
+        function areFieldsValidAndDirty() {
+            return validAndDirty($scope.register.uName)
+                && validAndDirty($scope.register.uEmail)
+                && validAndDirty($scope.register.uPass)
+                && validAndDirty($scope.register.uPassRepeat);
+        }
+
+        function validAndDirty(input) {
+            return input && input.$valid && input.$dirty;
         }
 
     }]);

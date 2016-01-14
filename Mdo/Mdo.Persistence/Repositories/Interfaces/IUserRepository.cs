@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Mdo.Persistence.Domain;
+using Mdo.Persistence.Entities;
 
 namespace Mdo.Persistence.Repositories.Interfaces
 {

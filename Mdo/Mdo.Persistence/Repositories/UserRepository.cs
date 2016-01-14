@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Migrations;
+﻿using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Mdo.Core;
 using Mdo.Persistence.Cfg;
-using Mdo.Persistence.Domain;
+using Mdo.Persistence.Entities;
 using Mdo.Persistence.Repositories.Interfaces;
 
 namespace Mdo.Persistence.Repositories
@@ -77,19 +72,5 @@ namespace Mdo.Persistence.Repositories
                 context.SaveChanges();
             }
         }
-//
-//        public bool Login(string username, string password)
-//        {
-//            using (var context = new MdoDbContext())
-//            {
-//                var user = context.Users.Single(x => x.Username == username && x.Password == password);
-//                if (user != null)
-//                {
-//                    return true;
-//                }
-//            }
-//
-//            return false;
-//        }
     }
 }

@@ -1,9 +1,11 @@
 ﻿<div ng-controller="registrationCtrl">
     <form class="ngform" name="register">
         <div class="container-fluid">
-            <h1>Register</h1>
+            <h1>Register yourself</h1>
             <br/>
-
+            <div class="row form-group">
+                <label class="label label-info reg-dirty" ng-if="showValidAndDirtyMessage()">All fields are requred and need to be filled properly</label>
+            </div>
             <div class="row form-group">
                 <label for="input-username" class="col-md-2 input-margin">
                     Username:
@@ -19,11 +21,11 @@
                            ng-minlength="3"
                            ng-maxlength="40"/>
 
-                    <ul ng-messages="register.uName.$error" class="val-box-message">
+                    <ul ng-messages="register.uName.$error" class="reg-box-message">
                         <li ng-messages-include="app/view/registration/messages/usernameMessages.html"></li>
                     </ul>
                 </div>
-                <div class="col-md-1 glyphicon glyphicon-ok val-glyph" ng-if="register.uName.$valid && register.uName.$dirty"></div>
+                <div class="col-md-1 glyphicon glyphicon-ok reg-glyph" ng-if="register.uName.$valid && register.uName.$dirty"></div>
             </div>
 
             <div class="row form-group">
@@ -38,11 +40,11 @@
                            placeholder="email@host.com"
                            mdorequired
                            email/>
-                    <ul ng-messages="register.uEmail.$error" class="val-box-message">
+                    <ul ng-messages="register.uEmail.$error" class="reg-box-message">
                         <li ng-messages-include="app/view/registration/messages/emailMessages.html"></li>
                     </ul>
                 </div>
-                <div class="col-md-1 glyphicon glyphicon-ok val-glyph" ng-if="register.uEmail.$valid && register.uEmail.$dirty"></div>
+                <div class="col-md-1 glyphicon glyphicon-ok reg-glyph" ng-if="register.uEmail.$valid && register.uEmail.$dirty"></div>
             </div>
 
             <div class="row form-group">
@@ -58,11 +60,11 @@
                            mdorequired
                            ng-minlength="8"
                            ng-maxlength="50"/>
-                    <ul ng-messages="register.uPass.$error" class="val-box-message">
+                    <ul ng-messages="register.uPass.$error" class="reg-box-message">
                         <li ng-messages-include="app/view/registration/messages/passwordMessages.html"></li>
                     </ul>
                 </div>
-                <div class="col-md-1 glyphicon glyphicon-ok val-glyph" ng-if="register.uPass.$valid && register.uPass.$dirty"></div>
+                <div class="col-md-1 glyphicon glyphicon-ok reg-glyph" ng-if="register.uPass.$valid && register.uPass.$dirty"></div>
             </div>
 
             <div class="row form-group">
@@ -76,14 +78,13 @@
                            type="password"
                            ng-model="user.passwordCheck"
                            pass-repeat="user.password"/>
-                    <ul ng-messages="register.uPassRepeat.$error" class="val-box-message">
+                    <ul ng-messages="register.uPassRepeat.$error" class="reg-box-message">
                         <li ng-messages-include="app/view/registration/messages/repeatMessages.html"></li>
                     </ul>
                 </div>
-                <div class="col-md-1 glyphicon glyphicon-ok val-glyph" ng-if="register.uPassRepeat.$valid && register.uPassRepeat.$dirty"></div>
+                <div class="col-md-1 glyphicon glyphicon-ok reg-glyph" ng-if="register.uPassRepeat.$valid && register.uPassRepeat.$dirty"></div>
             </div>
-            <button type="submit" class="btn btn-default" ng-click="register()">Register</button>
-            <br />
+            <button type="submit" class="btn btn-default reg-submit" ng-click="registerUser()">Register</button>
         </div>
     </form>
 </div>
