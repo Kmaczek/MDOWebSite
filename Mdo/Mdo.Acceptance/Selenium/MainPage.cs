@@ -37,6 +37,11 @@ namespace Mdo.Acceptance.Selenium
             get { return wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[4]/a"))); }
         }
 
+        public IWebElement RegisterButton
+        {
+            get { return wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[5]/a"))); }
+        }
+
         public IWebElement LoginUsername
         {
             get { return wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/ul[2]/li"))); }

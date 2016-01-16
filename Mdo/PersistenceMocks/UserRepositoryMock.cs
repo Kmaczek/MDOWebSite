@@ -27,7 +27,7 @@ namespace PersistenceMocks
 
         public void CreateUser(User user)
         {
-            UserWarehouse.Users.Add(user);
+            UserWarehouse.AddOrUpdate(user);
         }
 
         public void UpdateUser(User user)

@@ -5,9 +5,7 @@ using Mdo.Acceptance.Selenium;
 using Mdo.Acceptance.Selenium.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.PhantomJS;
-using OpenQA.Selenium.Support.UI;
 using PersistenceMocks;
 
 namespace Mdo.Acceptance

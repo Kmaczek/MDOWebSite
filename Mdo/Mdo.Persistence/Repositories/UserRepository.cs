@@ -55,12 +55,12 @@ namespace Mdo.Persistence.Repositories
             return user;
         }
 
-        public async void CreateUser(User user)
+        public void CreateUser(User user)
         {
             using (var context = new MdoDbContext())
             {
                 context.Users.Add(user);
-                var result = await context.SaveChangesAsync();
+                context.SaveChanges();
             }
         }
 
