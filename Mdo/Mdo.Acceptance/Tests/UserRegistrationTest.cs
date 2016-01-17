@@ -5,7 +5,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.PhantomJS;
 using PersistenceMocks;
 
-namespace Mdo.Acceptance
+namespace Mdo.Acceptance.Tests
 {
     [TestClass]
     public class UserRegistrationTest

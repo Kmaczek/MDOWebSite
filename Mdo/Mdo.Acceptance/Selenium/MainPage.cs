@@ -47,6 +47,11 @@ namespace Mdo.Acceptance.Selenium
             get { return wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/ul[2]/li"))); }
         }
 
+        public IWebElement LogoutButton
+        {
+            get { return wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/ul[2]/li[2]/a"))); }
+        }
+
         public ReadOnlyCollection<IWebElement> ToastrMessages
         {
             get
@@ -73,10 +78,33 @@ namespace Mdo.Acceptance.Selenium
             WaitSomeTime();
         }
 
+        public void Logout()
+        {
+            LogoutButton.Click();
+            WaitSomeTime(30);
+        }
+
+        public bool IsUserLogedIn(string username)
+        {
+            if (LoginUsername.Displayed
+                && LoginUsername.Text.Contains(username)
+                && LogoutButton.Displayed)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public void Reset()
         {
-            driver.Navigate().Refresh();
             driver.Manage().Cookies.DeleteAllCookies();
+            driver.Navigate().Refresh();
+        }
+
+        public void Refresh()
+        {
+            driver.Navigate().Refresh();
+            WaitSomeTime(10);
         }
 
         private void SetDriver(IWebDriver driver)

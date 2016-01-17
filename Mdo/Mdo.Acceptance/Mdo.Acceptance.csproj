@@ -74,9 +74,11 @@
     <Compile Include="Selenium\Pages\Page.cs" />
     <Compile Include="Selenium\Pages\RegisterUserPage.cs" />
     <Compile Include="Selenium\TestHelpers.cs" />
-    <Compile Include="UserLoginTest.cs" />
+    <Compile Include="Tests\UserLoginTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserRegistrationTest.cs" />
+    <Compile Include="Tests\UserLogoutTest.cs" />
+    <Compile Include="Tests\UserRegistrationTest.cs" />
+    <Compile Include="Tests\UserSessionTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
