@@ -1,0 +1,6 @@
+As a User
+Given that I loged in to application (im loged in)
+I want to be able to log out from application
+
+Comfortable:
+- One click aviable from every page

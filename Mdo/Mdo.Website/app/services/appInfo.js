@@ -12,13 +12,14 @@
             initData = initializationData;
         };
 
-        this.$get = ['$q', function appInfoFactory($q)
+        this.$get = ['$cookieStore', function appInfoFactory($cookieStore)
         {
-            return new AppInfo(initData);
+            return new AppInfo(initData, $cookieStore);
         }];
 
-        function AppInfo(initData)
-        {
+        function AppInfo(initData, $cookieStore) {
+            var storedSessionExpire = 'sessionExpire';
+            var storedUsername = 'username';
             var container = {
                 version: ''
             }
@@ -46,6 +47,31 @@
 
                 return null;
             };
+
+            this.saveSession = function (username) {
+                container.loggedIn = true;
+                container.username = username;
+                $cookieStore.put(storedSessionExpire, moment().add(7, 'days'));
+                $cookieStore.put(storedUsername, username);
+            }
+
+            this.restoreSession = function() {
+                var sessionDate = $cookieStore.get(storedSessionExpire);
+                if (moment(sessionDate, moment.ISO_8601).isAfter(moment())) {
+                    container.loggedIn = true;
+                    container.username = $cookieStore.get(storedUsername);
+                } else {
+                    container.loggedIn = false;
+                    container.username = '';
+                }
+            }
+
+            this.endSession = function() {
+                container.loggedIn = false;
+                container.username = '';
+                $cookieStore.remove(storedSessionExpire);
+                $cookieStore.remove(storedUsername);
+            }
         }
     });
 }());

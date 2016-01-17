@@ -29,16 +29,19 @@
         angular.extend(toastrConfig, {
             preventOpenDuplicates: true,
             progressBar: true,
-            timeOut: 2000,
-            extendedTimeOut: 2000
+            timeOut: 1200,
+            extendedTimeOut: 1200
         });
     }
 
-    function run() {
+    var run = ['appInfo',
+        function (appInfo) {
+            appInfo.restoreSession();
+        }
+    ];
 
-    }
-
-    angular.module('mdo', ['ui.router', 'ui.bootstrap', 'ngResource', 'ngAnimate', 'ngMessages', 'toastr'])
+    angular.module('mdo', ['ui.router', 'ui.bootstrap', 'ngResource', 'ngAnimate', 'ngMessages', 'ngCookies', 'toastr'])
         .constant('mdoConst', boot.getData())
-        .config(config);
+        .config(config)
+        .run(run);
 })();    

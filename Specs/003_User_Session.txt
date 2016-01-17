@@ -1,0 +1,11 @@
+As a User
+Given that I loged in to application, and then closed browser(without loging out)
+While opening page again i want my session to be restored, and refreshed
+
+Comfortable:
+- User dont have to log in each time she open page
+
+Succes:
+- User is logged in, layout from login is applied
+Fail:
+- User is not logged in, no layout changes

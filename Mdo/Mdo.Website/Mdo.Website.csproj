@@ -204,6 +204,8 @@
     <Content Include="app\services\apiConsumed\userService.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="app\services\constants\mdoEvents.js" />
+    <Content Include="app\services\constants\mdoRoles.js" />
     <Content Include="app\services\resources\userResource.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -365,6 +367,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="app\scripts\linq\linq.min.js" />
+    <Content Include="app\scripts\momentjs\moment-with-locales.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\scripts\momentjs\moment-with-locales.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\scripts\momentjs\moment.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\scripts\momentjs\moment.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

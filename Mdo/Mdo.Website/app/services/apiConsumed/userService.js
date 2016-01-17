@@ -1,5 +1,5 @@
 ﻿(function () {
-    angular.module('mdo').service('UserService', ['UserResource', 'appInfo', 'toastr', function (UserResource, appInfo, toastr) {
+    angular.module('mdo').service('UserService', ['UserResource', 'appInfo', 'toastr', '$cookieStore', function (UserResource, appInfo, toastr, $cookieStore) {
 
         function handleError(errorData)
         {
@@ -30,14 +30,12 @@
 
             return fireRequestDefaultError(UserResource.login, loginData,
                 function (data) {
-                    appInfo.container.loggedIn = true;
-                    appInfo.container.username = data.username;
+                    appInfo.saveSession(data.username);
 
                     handleSuccessMessage(data);
                 },
                 function () {
-                    appInfo.container.loggedIn = false;
-                    appInfo.container.username = '';
+                    appInfo.endSession();
                 });
         }
 
