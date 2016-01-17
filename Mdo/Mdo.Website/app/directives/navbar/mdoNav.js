@@ -6,10 +6,15 @@
             function init() {
                 $scope.shared = appInfo.container;
                 $scope.login = login;
+                $scope.logout = logout;
             }
 
             function login() {
                 UserService.login($scope.username, $scope.password);
+            }
+
+            function logout() {
+                appInfo.endSession();
             }
 
             init();
