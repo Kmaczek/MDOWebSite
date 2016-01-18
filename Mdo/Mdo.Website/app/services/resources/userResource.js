@@ -16,6 +16,10 @@
                 login: {
                     method: 'POST',
                     url: userApiUrl + '/login'
+                },
+                getEmail: {
+                    method: 'GET',
+                    url: userApiUrl + '/email/:email'
                 }
             });
 

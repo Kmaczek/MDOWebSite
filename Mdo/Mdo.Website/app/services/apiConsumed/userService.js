@@ -1,8 +1,7 @@
 ﻿(function () {
-    angular.module('mdo').service('UserService', ['UserResource', 'appInfo', 'toastr', '$cookieStore', function (UserResource, appInfo, toastr, $cookieStore) {
+    angular.module('mdo').service('UserService', ['UserResource', 'appInfo', 'toastr', function (UserResource, appInfo, toastr) {
 
-        function handleError(errorData)
-        {
+        function handleError(errorData) {
             toastr.error(errorData.data.message, errorData.statusText);
         }
 
@@ -46,11 +45,15 @@
                 Password: userData.password
             };
 
-            return fireRequestDefaultError(UserResource.register, registrationData,
-                function(data)
-                {
-                    console.log(data);
-                });
+            return UserResource.register(registrationData);
+        }
+
+        this.get = function (username) {
+            return UserResource.get({ username: username });
+        }
+
+        this.getEmail = function (email) {
+            return UserResource.getEmail({ email: email });
         }
 
     }]);

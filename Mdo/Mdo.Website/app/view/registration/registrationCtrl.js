@@ -1,8 +1,9 @@
 ﻿(function () {
-    angular.module('mdo').controller('registrationCtrl', ['$scope', 'UserService', function ($scope, UserService) {
+    angular.module('mdo').controller('registrationCtrl', ['$scope', 'UserService', 'toastr', function ($scope, UserService, toastr) {
 
         var registerClicked = false;
         $scope.showValidAndDirtyMessage = showValidAndDirtyMessage;
+        $scope.serverError = false;
 
         $scope.user = {
             username: '',
@@ -13,9 +14,32 @@
 
         $scope.registerUser = function () {
             registerClicked = true;
+            $scope.serverError = false;
             if (areFieldsValidAndDirty()) {
-                UserService.register($scope.user);
+                UserService.register($scope.user).$promise.then(
+                    function(result) {
+                        toastr.success('User successfully registered');
+                        resetPage();
+                    },
+                    function(error) {
+                        $scope.serverErrorMsg = error.data.message;
+                        $scope.serverError = true;
+                    });
             }
+        }
+
+        function resetPage() {
+            clearModel();
+            $scope.register.$setPristine();
+            $scope.register.$setUntouched();
+            registerClicked = false;
+        }
+
+        function clearModel() {
+            $scope.user.username = "";
+            $scope.user.email = "";
+            $scope.user.password = "";
+            $scope.user.passwordCheck = "";
         }
 
         function showValidAndDirtyMessage() {

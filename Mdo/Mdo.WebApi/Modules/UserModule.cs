@@ -27,7 +27,22 @@ namespace Mdo.WebApi.Modules
             
             Get["/{username}"] = o =>
             {
-                return Response.AsJson(new UserDto() { Rank = "rookie", Username = o.username });
+                var user = userRepository.GetByName(o.username);
+                if (user == null)
+                {
+                    return Response.AsJson(new { Message = String.Format("Resource [{0}] was not found", o.username)}, HttpStatusCode.NotFound);
+                }
+                return Response.AsJson(new UserDto{ Username = o.username });
+            };
+
+            Get["/email/{email}"] = o =>
+            {
+                var email = userRepository.GetByEmail(o.email);
+                if (email == null)
+                {
+                    return Response.AsJson(new { Message = String.Format("Resource [{0}] was not found", o.email) }, HttpStatusCode.NotFound);
+                }
+                return Response.AsJson(new { Email = o.email });
             };
 
             Post["/settings"] = o =>
@@ -84,14 +99,6 @@ namespace Mdo.WebApi.Modules
             };
         }
 
-        private Response LoginFailResponse()
-        {
-            return Response.AsJson(new 
-            {
-                Message = "Incorrect login, e-mail or password"
-            }, HttpStatusCode.Unauthorized);
-        }
-
         private void RegisterUser()
         {
             Post["/register"] = o =>
@@ -117,14 +124,30 @@ namespace Mdo.WebApi.Modules
                         return ReturnInvalidInput("Password is to short");
                     }
 
-                    var user = new UserModel(model);
-                    userRepository.CreateUser(user.ToUser());
+                    try
+                    {
+                        var user = new UserModel(model);
+                        userRepository.CreateUser(user.ToUser());
+                    }
+                    catch (Exception)
+                    {
+                        return Response.AsJson(new ResponseMessage() { Message = "Could not add user" }, HttpStatusCode.InternalServerError);
+                    }
+                    
 
                     return Response.AsJson(new ResponseMessage() { Message = "Registration Successfull" });
                 }
 
                 return Response.AsJson(new ResponseMessage() { Message = "Cannot process passed data. Most likely invalid format" }, HttpStatusCode.BadRequest);
             };
+        }
+
+        private Response LoginFailResponse()
+        {
+            return Response.AsJson(new
+            {
+                Message = "Incorrect login, e-mail or password"
+            }, HttpStatusCode.Unauthorized);
         }
 
         private Response ReturnInvalidInput(string message)

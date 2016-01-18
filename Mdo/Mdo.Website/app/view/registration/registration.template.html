@@ -5,6 +5,7 @@
             <br/>
             <div class="row form-group">
                 <label class="label label-info reg-dirty" ng-if="showValidAndDirtyMessage()">All fields are requred and need to be filled properly</label>
+                <label class="label label-info reg-dirty" ng-if="serverError">Server error: {{serverErrorMsg}}</label>
             </div>
             <div class="row form-group">
                 <label for="input-username" class="col-md-2 input-margin">
@@ -16,7 +17,9 @@
                            class="form-control"
                            type="text"
                            ng-model="user.username"
+                           ng-model-options="{ debounce: 1000 }"
                            placeholder="Jane Doe"
+                           username-val
                            mdorequired
                            ng-minlength="3"
                            ng-maxlength="40"/>
@@ -37,7 +40,9 @@
                            name="uEmail"
                            class="form-control"
                            ng-model="user.email"
+                           ng-model-options="{ debounce: 1000 }"
                            placeholder="email@host.com"
+                           email-val
                            mdorequired
                            email/>
                     <ul ng-messages="register.uEmail.$error" class="reg-box-message">
