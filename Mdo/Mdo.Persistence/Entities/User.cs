@@ -1,7 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Mdo.Persistence.Entities
 {
+    [Serializable]
     public class User
     {
         [Key]

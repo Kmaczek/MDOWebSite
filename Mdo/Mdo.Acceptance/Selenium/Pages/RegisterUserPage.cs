@@ -56,11 +56,16 @@ namespace Mdo.Acceptance.Selenium.Pages
 
         public void Register(string username, string email, string password, string repeat)
         {
+            int debounce = 1001;
             this.UsernameInput.SendKeys(username);
+            TestHelpers.WaitSomeTime(debounce);
             this.EmailInput.SendKeys(email);
+            TestHelpers.WaitSomeTime(debounce);
             this.PasswordInput.SendKeys(password);
+            TestHelpers.WaitSomeTime(debounce);
             this.RepeatInput.SendKeys(repeat);
-
+            TestHelpers.WaitSomeTime(debounce);
+            
             this.RegisterButton.Click();
         }
 

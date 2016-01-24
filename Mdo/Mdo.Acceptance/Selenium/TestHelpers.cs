@@ -13,5 +13,10 @@ namespace Mdo.Acceptance.Selenium
         {
             Thread.Sleep(new TimeSpan(0, 0, 0, 0, timeInMs));
         }
+
+        public static void WaitForHttpRequest(int timeInMs = 200)
+        {
+            Thread.Sleep(new TimeSpan(0, 0, 0, 0, timeInMs));
+        }
     }
 }

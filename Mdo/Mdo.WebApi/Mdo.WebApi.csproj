@@ -104,9 +104,9 @@
       <Project>{c3310b3a-231b-4ea6-b67b-b343db27dfcd}</Project>
       <Name>Mdo.Persistence</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PersistenceMocks\PersistenceMocks.csproj">
+    <ProjectReference Include="..\PersistenceMocks\Mdo.Test.PersistenceMocks.csproj">
       <Project>{1AE497F1-6C61-4BD0-87E5-70487F33CF3D}</Project>
-      <Name>PersistenceMocks</Name>
+      <Name>Mdo.Test.PersistenceMocks</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

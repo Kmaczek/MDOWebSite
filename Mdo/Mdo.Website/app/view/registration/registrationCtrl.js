@@ -1,5 +1,6 @@
 ﻿(function () {
-    angular.module('mdo').controller('registrationCtrl', ['$scope', 'UserService', 'toastr', function ($scope, UserService, toastr) {
+    angular.module('mdo').controller('registrationCtrl', ['$scope', 'UserService', 'mdoNav', 'toastr',
+        function ($scope, UserService, mdoNav, toastr) {
 
         var registerClicked = false;
         $scope.showValidAndDirtyMessage = showValidAndDirtyMessage;
@@ -17,9 +18,11 @@
             $scope.serverError = false;
             if (areFieldsValidAndDirty()) {
                 UserService.register($scope.user).$promise.then(
-                    function(result) {
-                        toastr.success('User successfully registered');
-                        resetPage();
+                    function (result) {
+                        mdoNav.to.messagePage({
+                            messageTitle: 'User created',
+                            message: "Please log in"
+                        });
                     },
                     function(error) {
                         $scope.serverErrorMsg = error.data.message;

@@ -206,6 +206,9 @@
     </Content>
     <Content Include="app\services\constants\mdoEvents.js" />
     <Content Include="app\services\constants\mdoRoles.js" />
+    <Content Include="app\services\navigation\mdoNavigate.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="app\services\resources\userResource.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -324,6 +327,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="app\view\main\mainCtrl.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\view\message\message.template.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="app\view\message\messageCtrl.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="app\view\registration\messages\emailMessages.html">

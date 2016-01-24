@@ -17,13 +17,10 @@ namespace Mdo.Acceptance.Selenium.Elements
             get { return wait.Until(d => d.FindElements(By.XPath("//*[@id='toast-container']/div"))); }
         }
 
-        public IWebElement Title { get; set; }
-        public IWebElement Content { get; set; }
-        public string Type { get; set; }
-
-        public ToastrMessages(WebDriverWait wait)
+        public ToastrMessages(IWebDriver driver)
         {
-            this.wait = wait;
+            this.wait = new WebDriverWait(driver: driver, timeout: new TimeSpan(0, 0, 0, 100));
         }
+
     }
 }

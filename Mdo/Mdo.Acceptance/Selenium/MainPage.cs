@@ -12,7 +12,7 @@ namespace Mdo.Acceptance.Selenium
     public class MainPage
     {
         private IWebDriver driver;
-        private WebDriverWait wait;
+        public WebDriverWait Wait { get; private set; }
         private string url = @"http://localhost:12345/";
         private ToastrMessages toasts;
 
@@ -20,7 +20,7 @@ namespace Mdo.Acceptance.Selenium
         {
             get
             {
-                return wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[1]/input")));
+                return Wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[1]/input")));
             }
         }
 
@@ -28,35 +28,35 @@ namespace Mdo.Acceptance.Selenium
         {
             get
             {
-                return wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[3]/input")));
+                return Wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[3]/input")));
             }
         }
 
         public IWebElement LoginButton
         {
-            get { return wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[4]/a"))); }
+            get { return Wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[4]/a"))); }
         }
 
         public IWebElement RegisterButton
         {
-            get { return wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[5]/a"))); }
+            get { return Wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[5]/a"))); }
         }
 
         public IWebElement LoginUsername
         {
-            get { return wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/ul[2]/li"))); }
+            get { return Wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/ul[2]/li"))); }
         }
 
         public IWebElement LogoutButton
         {
-            get { return wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/ul[2]/li[2]/a"))); }
+            get { return Wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/ul[2]/li[2]/a"))); }
         }
 
         public ReadOnlyCollection<IWebElement> ToastrMessages
         {
             get
             {
-                return wait.Until(d => d.FindElements(By.XPath("//*[@id='toast-container']/div")));
+                return Wait.Until(d => d.FindElements(By.XPath("//*[@id='toast-container']/div")));
             }
         }
 
@@ -75,13 +75,13 @@ namespace Mdo.Acceptance.Selenium
             PasswordInput.SendKeys(password);
             LoginButton.Click();
 
-            WaitSomeTime();
+            TestHelpers.WaitSomeTime();
         }
 
         public void Logout()
         {
             LogoutButton.Click();
-            WaitSomeTime(30);
+            TestHelpers.WaitSomeTime(30);
         }
 
         public bool IsUserLogedIn(string username)
@@ -104,35 +104,35 @@ namespace Mdo.Acceptance.Selenium
         public void Refresh()
         {
             driver.Navigate().Refresh();
-            WaitSomeTime(10);
+            TestHelpers.WaitSomeTime(10);
         }
 
-        private void SetDriver(IWebDriver driver)
+        private void SetDriver(IWebDriver fdriver)
         {
-            if (driver == null)
+            if (fdriver == null)
             {
                 this.driver = new PhantomJSDriver();
             }
-            this.driver = driver;
+            this.driver = fdriver;
         }
 
         private void InitializeElements()
         {
-            toasts = new ToastrMessages(wait);
-            WaitSomeTime();
+            toasts = new ToastrMessages(driver);
+            TestHelpers.WaitSomeTime();
         }
 
         private void GoToMainPage()
         {
             driver.Navigate().GoToUrl(url);
             driver.Manage().Window.Maximize();
-            wait = new WebDriverWait(driver: this.driver, timeout: new TimeSpan(0, 0, 0, 100));
+            Wait = new WebDriverWait(driver: this.driver, timeout: new TimeSpan(0, 0, 0, 300));
         }
 
-        private void WaitSomeTime(int timeInMs = 100)
-        {
-            Thread.Sleep(new TimeSpan(0, 0, 0, 0, timeInMs));
-        }
+//        private void WaitSomeTime(int timeInMs = 100)
+//        {
+//            Thread.Sleep(new TimeSpan(0, 0, 0, 0, timeInMs));
+//        }
 
         public void Cleanup()
         {

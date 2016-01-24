@@ -1,9 +1,16 @@
-﻿using Mdo.Acceptance.Selenium;
+﻿using System;
+using System.Linq;
+using System.Runtime.Remoting.Channels;
+using System.Runtime.Remoting.Channels.Tcp;
+using Mdo.Acceptance.Selenium;
+using Mdo.Acceptance.Selenium.Elements;
+using Mdo.Acceptance.Selenium.Extensions;
 using Mdo.Acceptance.Selenium.Pages;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.PhantomJS;
 using PersistenceMocks;
+using SharedData;
 
 namespace Mdo.Acceptance.Tests
 {
@@ -13,9 +20,17 @@ namespace Mdo.Acceptance.Tests
         private static IWebDriver driver = new PhantomJSDriver();
         private MainPage mainPage;
         private RegisterUserPage registerPage;
+        private ToastrMessages toasts;
+        private static UserWarehouse userWarehouse;
 
         public UserRegistrationTest()
         {
+        }
+
+        [ClassInitialize]
+        public static void Setup(TestContext cont)
+        {
+            userWarehouse = SetupAssemblyInitializer.UserWarehouse;
         }
 
         [ClassCleanup]
@@ -38,8 +53,19 @@ namespace Mdo.Acceptance.Tests
                 registerPage = new RegisterUserPage(driver);
             }
 
+            if (toasts == null)
+            {
+                this.toasts = new ToastrMessages(driver);
+            }
+            
             TestHelpers.WaitSomeTime();
             mainPage.Reset();
+        }
+
+        [TestCleanup]
+        public void Cleanup()
+        {
+            userWarehouse.ResetUsers();
         }
 
         [TestMethod]
@@ -51,14 +77,16 @@ namespace Mdo.Acceptance.Tests
         }
 
         [TestMethod]
-        public void specifying_correct_parameters_should_create_user()
+        public void specifying_correct_parameters_should_create_user_and_display_message()
         {
-            var newUser = UserWarehouse.GenerateUser("john");
+            var newUser = userWarehouse.GenerateUser("john");
             registerPage.Register(newUser);
-            TestHelpers.WaitSomeTime(1000);
+            TestHelpers.WaitForHttpRequest();
 
-            var storedUser = UserWarehouse.GetUser(x => x.Username == newUser.Username);
+            var storedUser = userWarehouse.GetUserByName(newUser.Username);
             Assert.IsNotNull(storedUser);
+
+            Assert.IsTrue(driver.Url.Contains("message"));
         }
     }
 }

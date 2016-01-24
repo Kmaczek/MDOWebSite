@@ -1,9 +1,7 @@
-﻿(function ()
-{
+﻿(function () {
     var boot = new MdoBoot();
 
-    function config($stateProvider, $locationProvider, $urlRouterProvider, appInfoProvider, toastrConfig)
-    {
+    function config($stateProvider, $locationProvider, $urlRouterProvider, appInfoProvider, toastrConfig) {
         appInfoProvider.initializeWith({
             loggedIn: false,
             username: ''
@@ -24,6 +22,10 @@
             .state('userRegistration', {
                 url: '/user/register',
                 templateUrl: 'app/view/registration/registration.template.html'
+            })
+            .state('message', {
+                url: '/message',
+                templateUrl: 'app/view/message/message.template.html'
             });
 
         angular.extend(toastrConfig, {
@@ -44,4 +46,4 @@
         .constant('mdoConst', boot.getData())
         .config(config)
         .run(run);
-})();    
+})();

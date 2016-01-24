@@ -15,6 +15,13 @@ namespace Mdo.Acceptance.Tests
     {
         private static IWebDriver driver = new PhantomJSDriver();
         private MainPage mainPage;
+        private static UserWarehouse userWarehouse;
+
+        [ClassInitialize]
+        public static void Setup(TestContext cont)
+        {
+            userWarehouse = SetupAssemblyInitializer.UserWarehouse;
+        }
 
         [ClassCleanup]
         public static void ClassCleanup()
@@ -38,6 +45,7 @@ namespace Mdo.Acceptance.Tests
         [TestCleanup]
         public void Cleanup()
         {
+            userWarehouse.ResetUsers();
         }
 
         private void WaitSomeTime(int timeInMs = 100)

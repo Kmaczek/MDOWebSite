@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
+using System.Runtime.Remoting.Channels.Http;
+using System.Runtime.Remoting.Channels.Tcp;
 using Mdo.Core;
 using Mdo.Persistence.Entities;
-using Nancy.Json;
 
 namespace PersistenceMocks
 {
-    public static class UserWarehouse
+    [Serializable]
+    public class UserWarehouse : MarshalByRefObject
     {
-        private static readonly string directoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Mdo");
-        private static readonly string filePath = Path.Combine(directoryPath, "UsersStore.json");
-        private static bool directoryExists;
         public static readonly string StdPassword = "stdPassword";
         public static readonly string StdUsername = "stdUsername";
         public static readonly string StdEmail = "std@email.com";
@@ -35,65 +34,73 @@ namespace PersistenceMocks
             });
         }
 
-        private static void CreateDirectoryIfDoesntExist()
+        public static UserWarehouse GetInstance()
         {
-            if (!directoryExists)
+            //            TcpChannel channel = new TcpChannel();
+            //            ChannelServices.RegisterChannel(channel, false);
+            HttpChannel httpChannel = new HttpChannel();
+            ChannelServices.RegisterChannel(httpChannel, false);
+
+            return (UserWarehouse)Activator.GetObject(typeof(UserWarehouse), "http://localhost:5000/UserWarehouse");
+        }
+
+        private void PopulateUsers()
+        {
+            var passwordToStore = MdoSecurity.CreateHashedPassword(StdPassword);
+            Users.Add(new User()
             {
-                directoryExists = Directory.Exists(directoryPath);
-
-                if (!directoryExists)
-                    Directory.CreateDirectory(directoryPath);
-            }
+                Email = StdEmail,
+                Username = StdUsername,
+                Id = StdId,
+                Password = passwordToStore
+            });
         }
 
-        public static void Save()
+        public void ResetUsers()
         {
-            CreateDirectoryIfDoesntExist();
-            var jUsers = new JavaScriptSerializer().Serialize(Users);
-            File.WriteAllText(filePath, jUsers);
-        }
-
-        private static void Load()
-        {
-            CreateDirectoryIfDoesntExist();
-            var jUsers = File.ReadAllText(filePath);
             Users.Clear();
-            Users.AddRange(new JavaScriptSerializer().Deserialize<User[]>(jUsers));
+            PopulateUsers();
         }
 
-        public static User GetStandardUser()
+        public User GetStandardUser()
         {
-            Load();
             return Users[0];
         }
 
-        public static User GetUser(int id)
+        public User GetUser(int id)
         {
-            Load();
             return Users.Find(u => u.Id == id);
         }
 
-        public static User GetUser(Predicate<User> predicate)
+        public User GetUser(Predicate<User> predicate)
         {
-            Load();
             return Users.Find(predicate);
         }
 
-        public static void AddOrUpdate(User user)
+        public User GetUserByName(string username)
+        {
+            return Users.Find(x => x.Username == username);
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            return Users.Find(x => x.Email == email);
+        }
+
+        public void AddOrUpdate(User user)
         {
             if (Users.Any(u => u.Id == user.Id))
             {
                 var storedUser = Users.Find(u => u.Id == user.Id);
-                CoppyUserData(user, storedUser);
+                CopyUserData(user, storedUser);
 
                 return;
             }
 
             Users.Add(user);
-            Save();
         }
 
-        public static void CoppyUserData(User fromUser, User toUser)
+        public void CopyUserData(User fromUser, User toUser)
         {
             toUser.Id = fromUser.Id;
             toUser.Email = fromUser.Email;
@@ -101,7 +108,7 @@ namespace PersistenceMocks
             toUser.Username = fromUser.Username;
         }
 
-        public static User GenerateUser(string common)
+        public User GenerateUser(string common)
         {
             return new User()
             {
