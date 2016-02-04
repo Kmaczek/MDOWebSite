@@ -18,10 +18,10 @@
         }];
 
         function AppInfo(initData, $cookieStore) {
-            var storedSessionExpire = 'sessionExpire';
-            var storedUsername = 'username';
+            var mdoCookie = 'mdoCookie';
             var container = {
-                version: ''
+                sessionData: new SessionData(),
+                isloggedIn: false
             }
 
             this.container = container;
@@ -36,6 +36,16 @@
                 }
             }
 
+            function clearSession() {
+                container.isloggedIn = false;
+                container.sessionData.cleanData();
+            }
+
+            function fillSessionData() {
+                container.sessionData.setFromCookie($cookieStore.get(mdoCookie));
+                container.isloggedIn = true;
+            }
+
             initialize(initData);
 
             this.get = function(property)
@@ -48,30 +58,73 @@
                 return null;
             };
 
-            this.saveSession = function (username) {
-                container.loggedIn = true;
-                container.username = username;
-                $cookieStore.put(storedSessionExpire, moment().add(7, 'days'));
-                $cookieStore.put(storedUsername, username);
+            this.saveSession = function (sessionData) {
+                var cookieValue = SessionData.fromSessionData(sessionData);
+                $cookieStore.put(mdoCookie, cookieValue);
+
+                fillSessionData();
             }
 
-            this.restoreSession = function() {
-                var sessionDate = $cookieStore.get(storedSessionExpire);
+            this.restoreSession = function () {
+                var cookie = $cookieStore.get(mdoCookie);
+                if (!cookie) {
+                    return;
+                }
+                var sessionDate = cookie.sessionExpire;
+
                 if (moment(sessionDate, moment.ISO_8601).isAfter(moment())) {
-                    container.loggedIn = true;
-                    container.username = $cookieStore.get(storedUsername);
+                    fillSessionData();
                 } else {
-                    container.loggedIn = false;
-                    container.username = '';
+                    clearSession();
                 }
             }
 
             this.endSession = function() {
-                container.loggedIn = false;
-                container.username = '';
-                $cookieStore.remove(storedSessionExpire);
-                $cookieStore.remove(storedUsername);
+                clearSession();
+                $cookieStore.remove(mdoCookie);
             }
         }
     });
 }());
+
+//TODO: can be moved into angular service
+SessionData = function(username, secret, roles, sessionExpire) {
+    
+    this.username = username;
+    this.secret = secret;
+    this.roles = roles;
+
+    if (sessionExpire) {
+        this.sessionExpire = sessionExpire;
+    } else {
+        this.sessionExpire = moment().add(7, 'days');
+    }
+
+    this.setFromCookie = function(cookie) {
+        this.username = cookie.username;
+        this.secret = cookie.secret;
+        this.roles = cookie.roles;
+        this.sessionExpire = sessionExpire;
+    }
+
+    this.cleanData = function() {
+        this.username = '';
+        this.secret = '';
+        this.roles = [];
+        this.sessionExpire = null;
+    }
+}
+
+SessionData.fromSessionData = function (sessionData) {
+    return new SessionData(sessionData.username, sessionData.secret, sessionData.roles);
+}
+
+LoginData = function(username, secret, roles) {
+    this.username = username;
+    this.secret = secret;
+    this.roles = roles;
+}
+
+LoginData.fromResponse = function(response) {
+    return new LoginData(response.username, response.secret, response.roles);
+}

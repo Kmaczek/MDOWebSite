@@ -9,6 +9,11 @@ namespace Mdo.Acceptance.Selenium
 {
     static class TestHelpers
     {
+        public static string PageUrl
+        {
+            get { return @"http://localhost:22222/"; }
+        }
+
         public static void WaitSomeTime(int timeInMs = 100)
         {
             Thread.Sleep(new TimeSpan(0, 0, 0, 0, timeInMs));

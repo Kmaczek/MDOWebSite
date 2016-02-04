@@ -75,6 +75,7 @@
     <Compile Include="Selenium\Pages\Page.cs" />
     <Compile Include="Selenium\Pages\RegisterUserPage.cs" />
     <Compile Include="Selenium\TestHelpers.cs" />
+    <Compile Include="Selenium\Waiter.cs" />
     <Compile Include="Tests\SetupAssemblyInitializer.cs" />
     <Compile Include="Tests\UserLoginTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +87,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Mdo.DB\Mdo.DB.csproj">
+      <Project>{4FD25D25-5E2A-49C4-BC21-D122D468097D}</Project>
+      <Name>Mdo.DB</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Mdo.Persistence\Mdo.Persistence.csproj">
       <Project>{C3310B3A-231B-4EA6-B67B-B343DB27DFCD}</Project>
       <Name>Mdo.Persistence</Name>

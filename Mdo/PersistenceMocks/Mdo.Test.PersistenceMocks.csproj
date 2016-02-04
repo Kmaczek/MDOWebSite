@@ -54,6 +54,14 @@
       <Project>{7E454380-5F93-444B-A0A1-D18B7DB9190C}</Project>
       <Name>Mdo.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Mdo.DB\Mdo.DB.csproj">
+      <Project>{4FD25D25-5E2A-49C4-BC21-D122D468097D}</Project>
+      <Name>Mdo.DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mdo.Models\Mdo.Models.csproj">
+      <Project>{D704768B-B024-4608-9FB1-A0BBAFEEF47F}</Project>
+      <Name>Mdo.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Mdo.Persistence\Mdo.Persistence.csproj">
       <Project>{C3310B3A-231B-4EA6-B67B-B343DB27DFCD}</Project>
       <Name>Mdo.Persistence</Name>

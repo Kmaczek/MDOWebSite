@@ -6,6 +6,7 @@ using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Http;
 using System.Runtime.Remoting.Channels.Tcp;
+using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Threading.Tasks;
 using PersistenceMocks;
@@ -16,12 +17,16 @@ namespace SharedData
     {
         static void Main(string[] args)
         {
-            SoapServerFormatterSinkProvider HserverProv = new SoapServerFormatterSinkProvider();
-            HserverProv.TypeFilterLevel = System.Runtime.Serialization.Formatters.TypeFilterLevel.Full;
-            SoapClientFormatterSinkProvider HclientProv = new SoapClientFormatterSinkProvider();
+            var binaryServerFormatter = new BinaryServerFormatterSinkProvider();
+            binaryServerFormatter.TypeFilterLevel = TypeFilterLevel.Full;
+            var clientFormatterSinkProvider = new BinaryClientFormatterSinkProvider();
+//            var HserverProv = new SoapServerFormatterSinkProvider();
+//            HserverProv.TypeFilterLevel = System.Runtime.Serialization.Formatters.TypeFilterLevel.Full;
+//            SoapClientFormatterSinkProvider HclientProv = new SoapClientFormatterSinkProvider();
+
             IDictionary Hprops = new Hashtable();
             Hprops["port"] = "5000";
-            HttpChannel Hchnl = new HttpChannel(Hprops, HclientProv, HserverProv);
+            HttpChannel Hchnl = new HttpChannel(Hprops, clientFormatterSinkProvider, binaryServerFormatter);
             ChannelServices.RegisterChannel(Hchnl, false);
 
 //            TcpChannel channel = new TcpChannel(5000);

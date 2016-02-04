@@ -1,6 +1,7 @@
 ﻿(function () {
     angular.module('mdo').service('UserService', ['UserResource', 'appInfo', 'toastr', function (UserResource, appInfo, toastr) {
 
+        //TODO: move methods from this service to Resource to reduce number of files
         function handleError(errorData) {
             toastr.error(errorData.data.message, errorData.statusText);
         }
@@ -29,7 +30,7 @@
 
             return fireRequestDefaultError(UserResource.login, loginData,
                 function (data) {
-                    appInfo.saveSession(data.username);
+                    appInfo.saveSession(LoginData.fromResponse(data));
 
                     handleSuccessMessage(data);
                 },

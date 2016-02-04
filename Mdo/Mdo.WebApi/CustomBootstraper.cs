@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
-using Mdo.Persistence.Repositories;
-using Mdo.Persistence.Repositories.Interfaces;
+using Mdo.Persistence;
+using Mdo.Persistence.Interfaces;
 using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.TinyIoc;
@@ -15,7 +15,7 @@ namespace Mdo.WebApi
         {
             pipelines.AfterRequest.AddItemToEndOfPipeline(ctx =>
             {
-                ctx.Response.Headers.Add("Access-Control-Allow-Origin", "http://localhost:12345");
+                ctx.Response.Headers.Add("Access-Control-Allow-Origin", "http://localhost:22222");
                 ctx.Response.Headers.Add("Access-Control-Allow-Methods", "POST,GET,DELETE,PUT,OPTIONS");
                 ctx.Response.Headers.Add("Access-Control-Allow-Credentials", "true");
                 ctx.Response.Headers.Add("Access-Control-Allow-Headers", "Accept,Origin,Content-type");

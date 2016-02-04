@@ -13,7 +13,7 @@ namespace Mdo.Acceptance.Selenium
     {
         private IWebDriver driver;
         public WebDriverWait Wait { get; private set; }
-        private string url = @"http://localhost:12345/";
+        private string url = TestHelpers.PageUrl;
         private ToastrMessages toasts;
 
         public IWebElement LoginInput
@@ -75,7 +75,7 @@ namespace Mdo.Acceptance.Selenium
             PasswordInput.SendKeys(password);
             LoginButton.Click();
 
-            TestHelpers.WaitSomeTime();
+            TestHelpers.WaitForHttpRequest();
         }
 
         public void Logout()

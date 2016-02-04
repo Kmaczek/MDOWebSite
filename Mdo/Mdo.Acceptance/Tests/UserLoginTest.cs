@@ -58,7 +58,8 @@ namespace Mdo.Acceptance.Tests
         {
             mainPage.Login(UserWarehouse.StdUsername, UserWarehouse.StdPassword);
 
-            Assert.IsTrue(mainPage.LoginUsername.Text.Contains(UserWarehouse.StdUsername));
+            Waiter.ForNotNull(() => mainPage.LoginUsername.Text);
+            Assert.IsTrue(mainPage.LoginUsername.Text.Contains(UserWarehouse.StdUsername), "Actual value '{0}'.", mainPage.LoginUsername.Text);
         }
 
         [TestMethod]

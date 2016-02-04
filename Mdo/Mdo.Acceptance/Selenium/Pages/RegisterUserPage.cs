@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Mdo.Persistence.Entities;
+﻿using Mdo.DB.Entities;
 using OpenQA.Selenium;
 
 namespace Mdo.Acceptance.Selenium.Pages
@@ -50,13 +45,13 @@ namespace Mdo.Acceptance.Selenium.Pages
             }
         }
 
-        public RegisterUserPage(IWebDriver driver) : base(driver, @"http://localhost:12345/user/register")
+        public RegisterUserPage(IWebDriver driver) : base(driver, TestHelpers.PageUrl+"/user/register")
         {
         }
 
         public void Register(string username, string email, string password, string repeat)
         {
-            int debounce = 1001;
+            int debounce = 1020;
             this.UsernameInput.SendKeys(username);
             TestHelpers.WaitSomeTime(debounce);
             this.EmailInput.SendKeys(email);
@@ -69,7 +64,7 @@ namespace Mdo.Acceptance.Selenium.Pages
             this.RegisterButton.Click();
         }
 
-        public void Register(User user)
+        public void Register(UserEntity user)
         {
             this.Register(user.Username, user.Email, user.Password, user.Password);
         }

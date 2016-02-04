@@ -36,13 +36,20 @@
         });
     }
 
-    var run = ['appInfo',
-        function (appInfo) {
+    var run = ['appInfo', 'PermissionStore',
+        function (appInfo, PermissionStore) {
             appInfo.restoreSession();
+            PermissionStore.definePermission('anonymous', function(stateParams) {
+                if (appInfo.container.sessionData && Enumerable.From(appInfo.container.sessionData.roles).Any) {
+                    return false;
+                } else {
+                    return true;
+                }
+            });
         }
     ];
 
-    angular.module('mdo', ['ui.router', 'ui.bootstrap', 'ngResource', 'ngAnimate', 'ngMessages', 'ngCookies', 'toastr'])
+    angular.module('mdo', ['ui.router', 'ui.bootstrap', 'ngResource', 'ngAnimate', 'ngMessages', 'ngCookies', 'permission', 'toastr'])
         .constant('mdoConst', boot.getData())
         .config(config)
         .run(run);

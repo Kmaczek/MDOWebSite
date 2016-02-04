@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Owin.Hosting;
 
 namespace Mdo.Website
@@ -14,11 +10,11 @@ namespace Mdo.Website
         {
             var url = ConfigurationManager.AppSettings.Get("siteHostUrl");
 
-            using (WebApp.Start<Startup>(url))
+            using (WebApp.Start<Startup>(new StartOptions(url)))
             {
                 Console.WriteLine("WebApi Host started");
                 Console.WriteLine("Hosting on: " + url);
-                System.Diagnostics.Process.Start(url);
+//                System.Diagnostics.Process.Start(url);
                 Console.ReadLine();
             }
         }

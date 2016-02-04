@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Runtime.Remoting.Channels;
-using System.Runtime.Remoting.Channels.Tcp;
-using Mdo.Persistence.Entities;
-using Mdo.Persistence.Repositories.Interfaces;
+using Mdo.DB.Entities;
+using Mdo.Models;
+using Mdo.Persistence.Adapters;
+using Mdo.Persistence.Interfaces;
 
 namespace PersistenceMocks
 {
@@ -15,36 +15,41 @@ namespace PersistenceMocks
             userWarehouse = UserWarehouse.GetInstance();
         }
 
-        public User GetUser(int id)
+        public UserModel GetUser(int id)
         {
-            return userWarehouse.GetUser(id);
+            var adapter = new UserAdapter(userWarehouse.GetUser(id));
+            return adapter.UserModel;
         }
 
-        public User GetUser(string usernameOrEmail)
+        public UserModel GetUser(string usernameOrEmail)
         {
             var user = userWarehouse.GetUserByName(usernameOrEmail);
             user = user ?? userWarehouse.GetUserByEmail(usernameOrEmail);
-            return user;
+            var adapter = new UserAdapter(user);
+
+            return adapter.UserModel;
         }
 
-        public User GetByName(string username)
+        public UserModel GetByName(string username)
         {
-            return userWarehouse.GetUserByName(username);
+            var adapter = new UserAdapter(userWarehouse.GetUserByName(username));
+            return adapter.UserModel;
         }
 
-        public User GetByEmail(string email)
+        public UserModel GetByEmail(string email)
         {
-            return userWarehouse.GetUserByEmail(email);
+            var adapter = new UserAdapter(userWarehouse.GetUserByEmail(email));
+            return adapter.UserModel;
         }
 
-        public void CreateUser(User user)
+        public void CreateUser(UserModel user)
         {
-            userWarehouse.AddOrUpdate(user);
+            userWarehouse.AddOrUpdate(new UserAdapter(user).UserEntity);
         }
 
-        public void UpdateUser(User user)
+        public void UpdateUser(UserModel user)
         {
-            userWarehouse.AddOrUpdate(user);
+            userWarehouse.AddOrUpdate(new UserAdapter(user).UserEntity);
         }
     }
 }

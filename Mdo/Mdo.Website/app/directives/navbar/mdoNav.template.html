@@ -5,12 +5,12 @@
         </a>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
-                <li ng-show="shared.loggedIn" ui-sref-active="active"><a ui-sref="user">Profile</a></li>
+                <li ng-show="shared.isloggedIn" ui-sref-active="active"><a ui-sref="user">Profile</a></li>
                 <li ui-sref-active="active"><a ui-sref="decks">Decks</a></li>
                 <li ui-sref-active="active"><a ui-sref="creator">Deck Creator</a></li>
                 <li ui-sref-active="active"><a ui-sref="cards">Card Base</a></li>
             </ul>
-            <form ng-show="!shared.loggedIn">
+            <form ng-show="!shared.isloggedIn">
                 <ul class="nav navbar-nav navbar-right">
                     <li><input class="form-control navbar-form navbar-input" type="text" placeholder="login / email" ng-model="username"/></li>
                     <li><span> </span></li>
@@ -19,8 +19,8 @@
                     <li><a href="#" ui-sref="userRegistration">Register</a></li>
                 </ul>
             </form>
-            <ul ng-show="shared.loggedIn" class="nav navbar-nav navbar-right">
-                <li class="nav-text-centered">Loged in as: <span class="nav-username">{{shared.username}}</span></li>
+            <ul ng-show="shared.isloggedIn" class="nav navbar-nav navbar-right">
+                <li class="nav-text-centered">Loged in as: <span class="nav-username">{{shared.sessionData.username}}</span></li>
                 <li><a href="#" ng-click="logout()">Logout</a></li>
             </ul>
         </div>

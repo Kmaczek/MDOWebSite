@@ -2,10 +2,12 @@
 using System.Linq;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
+using System.Threading;
 using Mdo.Acceptance.Selenium;
 using Mdo.Acceptance.Selenium.Elements;
 using Mdo.Acceptance.Selenium.Extensions;
 using Mdo.Acceptance.Selenium.Pages;
+using Mdo.DB.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.PhantomJS;
@@ -82,8 +84,8 @@ namespace Mdo.Acceptance.Tests
             var newUser = userWarehouse.GenerateUser("john");
             registerPage.Register(newUser);
             TestHelpers.WaitForHttpRequest();
-
-            var storedUser = userWarehouse.GetUserByName(newUser.Username);
+  
+            var storedUser = Waiter.ForNotNull(() => userWarehouse.GetUserByName(newUser.Username));
             Assert.IsNotNull(storedUser);
 
             Assert.IsTrue(driver.Url.Contains("message"));

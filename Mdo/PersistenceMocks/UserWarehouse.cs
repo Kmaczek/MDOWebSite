@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Http;
-using System.Runtime.Remoting.Channels.Tcp;
 using Mdo.Core;
-using Mdo.Persistence.Entities;
+using Mdo.DB.Entities;
 
 namespace PersistenceMocks
 {
@@ -20,25 +19,24 @@ namespace PersistenceMocks
         public static readonly string FakeUsername = "fakeUsername";
         public static readonly string FakePassword = "fakePass";
 
-        public static List<User> Users = new List<User>();
+        public static List<UserEntity> Users = new List<UserEntity>();
 
         static UserWarehouse()
         {
             var passwordToStore = MdoSecurity.CreateHashedPassword(StdPassword);
-            Users.Add(new User()
+            Users.Add(new UserEntity()
             {
                 Email = StdEmail,
                 Username = StdUsername,
-                Id = StdId,
+                UserId = StdId,
                 Password = passwordToStore
             });
         }
 
         public static UserWarehouse GetInstance()
         {
-            //            TcpChannel channel = new TcpChannel();
-            //            ChannelServices.RegisterChannel(channel, false);
-            HttpChannel httpChannel = new HttpChannel();
+            var clientFormatter = new BinaryClientFormatterSinkProvider();
+            HttpChannel httpChannel = new HttpChannel(null, clientFormatter, null);
             ChannelServices.RegisterChannel(httpChannel, false);
 
             return (UserWarehouse)Activator.GetObject(typeof(UserWarehouse), "http://localhost:5000/UserWarehouse");
@@ -47,11 +45,11 @@ namespace PersistenceMocks
         private void PopulateUsers()
         {
             var passwordToStore = MdoSecurity.CreateHashedPassword(StdPassword);
-            Users.Add(new User()
+            Users.Add(new UserEntity()
             {
                 Email = StdEmail,
                 Username = StdUsername,
-                Id = StdId,
+                UserId = StdId,
                 Password = passwordToStore
             });
         }
@@ -62,36 +60,41 @@ namespace PersistenceMocks
             PopulateUsers();
         }
 
-        public User GetStandardUser()
+        public UserEntity[] GetAllUsers()
+        {
+            return Users.ToArray();
+        }
+
+        public UserEntity GetStandardUser()
         {
             return Users[0];
         }
 
-        public User GetUser(int id)
+        public UserEntity GetUser(int id)
         {
-            return Users.Find(u => u.Id == id);
+            return Users.Find(u => u.UserId == id);
         }
 
-        public User GetUser(Predicate<User> predicate)
+        public UserEntity GetUser(Predicate<UserEntity> predicate)
         {
             return Users.Find(predicate);
         }
 
-        public User GetUserByName(string username)
+        public UserEntity GetUserByName(string username)
         {
             return Users.Find(x => x.Username == username);
         }
 
-        public User GetUserByEmail(string email)
+        public UserEntity GetUserByEmail(string email)
         {
             return Users.Find(x => x.Email == email);
         }
 
-        public void AddOrUpdate(User user)
+        public void AddOrUpdate(UserEntity user)
         {
-            if (Users.Any(u => u.Id == user.Id))
+            if (Users.Any(u => u.UserId == user.UserId))
             {
-                var storedUser = Users.Find(u => u.Id == user.Id);
+                var storedUser = Users.Find(u => u.UserId == user.UserId);
                 CopyUserData(user, storedUser);
 
                 return;
@@ -100,17 +103,17 @@ namespace PersistenceMocks
             Users.Add(user);
         }
 
-        public void CopyUserData(User fromUser, User toUser)
+        public void CopyUserData(UserEntity fromUser, UserEntity toUser)
         {
-            toUser.Id = fromUser.Id;
+            toUser.UserId = fromUser.UserId;
             toUser.Email = fromUser.Email;
             toUser.Password = fromUser.Password;
             toUser.Username = fromUser.Username;
         }
 
-        public User GenerateUser(string common)
+        public UserEntity GenerateUser(string common)
         {
-            return new User()
+            return new UserEntity()
             {
                 Email = common+"@email.com",
                 Password = "qqqqqqqq".Insert(0, common),

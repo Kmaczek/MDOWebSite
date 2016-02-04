@@ -195,6 +195,9 @@
     <Content Include="app\directives\navbar\mdoNav.template.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="app\scripts\permissions\angular-permission.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="app\scripts\toastr\angular-toastr.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
