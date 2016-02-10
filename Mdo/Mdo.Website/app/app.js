@@ -19,6 +19,15 @@
                 url: '/user',
                 templateUrl: 'app/view/user/user.template.html'
             })
+            .state('cards', {
+                url: '/cards',
+                templateUrl: 'app/view/cards/cards.template.html',
+                data: {
+                    permissions: {
+                        only: ['admin']
+                    }
+                }
+            })
             .state('userRegistration', {
                 url: '/user/register',
                 templateUrl: 'app/view/registration/registration.template.html'
@@ -36,16 +45,44 @@
         });
     }
 
-    var run = ['appInfo', 'PermissionStore',
-        function (appInfo, PermissionStore) {
+    var run = ['appInfo', 'RoleStore', 'PermissionStore',
+        function (appInfo, RoleStore, PermissionStore) {
             appInfo.restoreSession();
-            PermissionStore.definePermission('anonymous', function(stateParams) {
-                if (appInfo.container.sessionData && Enumerable.From(appInfo.container.sessionData.roles).Any) {
-                    return false;
-                } else {
+
+            PermissionStore.definePermission('authorized', function (stateParams) {
+                if (appInfo.container.isloggedIn) {
                     return true;
                 }
+                return false;
             });
+
+            PermissionStore.definePermission('isAdmin', function (stateParams) {
+                var isAdmin = appInfo.container.sessionData &&
+                    Enumerable
+                    .From(appInfo.container.sessionData.roles)
+                    .Contains('administrator');
+                return isAdmin;
+            });
+
+            PermissionStore.definePermission('isMod', function (stateParams) {
+                var isAdmin = appInfo.container.sessionData &&
+                    Enumerable
+                    .From(appInfo.container.sessionData.roles)
+                    .Contains('moderator');
+                return isAdmin;
+            });
+
+            PermissionStore.definePermission('isUser', function (stateParams) {
+                var isAdmin = appInfo.container.sessionData &&
+                    Enumerable
+                    .From(appInfo.container.sessionData.roles)
+                    .Contains('standard');
+                return isAdmin;
+            });
+
+            RoleStore.defineRole('admin', ['authorized', 'isAdmin']);
+            RoleStore.defineRole('moderator', ['authorized', 'isMod']);
+            RoleStore.defineRole('user', ['authorized', 'isUser']);
         }
     ];
 

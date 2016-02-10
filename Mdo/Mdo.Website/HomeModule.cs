@@ -1,13 +1,10 @@
 ﻿using System;
-using Mdo.Website.Common;
 using Nancy;
-using ILogger = Microsoft.Owin.Logging.ILogger;
 
 namespace Mdo.Website
 {
     public class HomeModule : NancyModule
     {
-        public static IMdoLogger Log = new ConsoleLogger();
         public HomeModule()
         {
             Get["/"] = x =>
@@ -27,7 +24,6 @@ namespace Mdo.Website
                 }
                 catch (Exception e)
                 {
-                    Log.Write("Error during handling static content:  \n" + e);
                     return Response.AsRedirect("/");
                 }
                 

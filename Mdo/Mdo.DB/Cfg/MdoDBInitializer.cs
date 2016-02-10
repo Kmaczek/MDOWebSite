@@ -57,9 +57,9 @@ namespace Mdo.DB.Cfg
 
         private static class RoleNames
         {
-            public static string Std { get; } = "Standard";
-            public static string Admin { get; } = "Administrator";
-            public static string Mod { get; } = "Moderator";
+            public static string Std { get; } = "standard";
+            public static string Admin { get; } = "administrator";
+            public static string Mod { get; } = "moderator";
         }
     }
 }

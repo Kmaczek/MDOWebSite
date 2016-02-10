@@ -19,10 +19,7 @@
             if (areFieldsValidAndDirty()) {
                 UserService.register($scope.user).$promise.then(
                     function (result) {
-                        mdoNav.to.messagePage({
-                            messageTitle: 'User created',
-                            message: "Please log in"
-                        });
+                        mdoNav.to.messagePage('UserCreated');
                     },
                     function(error) {
                         $scope.serverErrorMsg = error.data.message;

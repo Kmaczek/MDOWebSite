@@ -1,4 +1,4 @@
-﻿using System.Runtime.CompilerServices;
+﻿using Mdo.Website.NancyConfig;
 using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Conventions;
@@ -24,5 +24,9 @@ namespace Mdo.Website
             nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder
                 .AddDirectory("app", @"app"));
         }
+
+#if DEBUG
+        protected override IRootPathProvider RootPathProvider => new CustomRootPathProvider();
+#endif
     }
 }

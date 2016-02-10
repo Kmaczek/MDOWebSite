@@ -11,12 +11,10 @@
                 path: ''
             };
 
-            function goToMessagePage(obj) {
+            function goToMessagePage(messageKey) {
                 var path = '/message';
-
-                data = obj;
+                data = messageKey;
                 target.path = path;
-
                 $location.path(path);
             }
 
