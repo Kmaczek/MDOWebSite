@@ -10,30 +10,49 @@
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise("/");
 
+        var messageToDisplay = 'none';
+        var backState = '';
         $stateProvider
             .state('main', {
                 url: '/',
                 templateUrl: 'app/view/main/main.template.html'
             })
-            .state('user', {
-                url: '/user',
-                templateUrl: 'app/view/user/user.template.html'
-            })
-            .state('cards', {
-                url: '/cards',
-                templateUrl: 'app/view/cards/cards.template.html',
+
+            .state('profile', {
+                url: '/profile',
+                templateUrl: 'app/view/userProfile/user-profile.template.html',
                 data: {
                     permissions: {
-                        only: ['admin']
+                        only: ['authorized'],
+                        redirectTo: function () {
+                            messageToDisplay = 'Unauthorized';
+                            backState = '/profile';
+                            return 'message';
+                        }
                     }
                 }
             })
+
+            .state('cards', {
+                url: '/cards',
+                templateUrl: 'app/view/cards/cards.template.html'
+            })
+
             .state('userRegistration', {
                 url: '/user/register',
                 templateUrl: 'app/view/registration/registration.template.html'
             })
+
             .state('message', {
                 url: '/message',
+                data: {
+                    messageFromState: function () {
+                        return messageToDisplay;
+                    },
+                    backState: function () {
+                        return backState;
+                    }
+                },
                 templateUrl: 'app/view/message/message.template.html'
             });
 

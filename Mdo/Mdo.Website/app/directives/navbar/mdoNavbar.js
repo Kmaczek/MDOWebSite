@@ -1,7 +1,7 @@
 ﻿(function () {
-    angular.module('mdo').directive('mdoNav', function () {
+    angular.module('mdo').directive('mdoNavbar', function () {
 
-        var controller = ['$scope', 'appInfo', 'UserService', function ($scope, appInfo, UserService) {
+        var controller = ['$scope', 'appInfo', 'mdoNavigate', 'UserService', function ($scope, appInfo, mdoNavigate, UserService) {
 
             function init() {
                 $scope.shared = appInfo.container;
@@ -15,13 +15,20 @@
 
             function logout() {
                 appInfo.endSession();
+                mdoNavigate.to.main();
+                clearLoginInput();
+            }
+
+            function clearLoginInput() {
+                $scope.username = '';
+                $scope.password = '';
             }
 
             init();
         }];
 
         return {
-            templateUrl: 'app/directives/navbar/mdoNav.template.html',
+            templateUrl: 'app/directives/navbar/mdoNavbar.template.html',
             scope: {
                 login: '='
             },

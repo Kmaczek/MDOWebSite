@@ -188,10 +188,10 @@
     <Content Include="app\content\fonts\glyphicons-halflings-regular.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\directives\navbar\mdoNav.js">
+    <Content Include="app\directives\navbar\mdoNavbar.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\directives\navbar\mdoNav.template.html">
+    <Content Include="app\directives\navbar\mdoNavbar.template.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="app\scripts\permissions\angular-permission.js">
@@ -382,10 +382,10 @@
     <Content Include="app\view\registration\validation\usernameVal.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\view\user\user.template.html">
+    <Content Include="app\view\userProfile\user-profile.template.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="app\view\user\userCtrl.js">
+    <Content Include="app\view\userProfile\userProfileCtrl.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="index.html">

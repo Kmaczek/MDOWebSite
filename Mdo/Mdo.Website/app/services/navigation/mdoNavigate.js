@@ -1,7 +1,8 @@
 ﻿(function () {
-    angular.module('mdo').factory('mdoNav', ['$location',
+    angular.module('mdo').factory('mdoNavigate', ['$location',
         function ($location) {
             var to = {
+                main: goToMainPage,
                 messagePage: goToMessagePage
             };
 
@@ -11,9 +12,20 @@
                 path: ''
             };
 
+            function goToMainPage() {
+                var path = '/';
+                target.path = path;
+                $location.path(path);
+            }
+
             function goToMessagePage(messageKey) {
-                var path = '/message';
                 data = messageKey;
+                var path = '/message';
+                target.path = path;
+                $location.path(path);
+            }
+
+            function toPage(path) {
                 target.path = path;
                 $location.path(path);
             }
@@ -23,7 +35,8 @@
                     return data;
                 },
                 target: target,
-                to: to
+                to: to,
+                toPage: toPage
             }
         }]);
 
