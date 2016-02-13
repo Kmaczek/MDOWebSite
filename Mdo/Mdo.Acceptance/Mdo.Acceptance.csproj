@@ -72,10 +72,12 @@
     <Compile Include="Selenium\Extensions\ToastsExtensions.cs" />
     <Compile Include="Selenium\MainPage.cs" />
     <Compile Include="Selenium\PageNavigator.cs" />
+    <Compile Include="Selenium\Pages\MessagesPage.cs" />
     <Compile Include="Selenium\Pages\Page.cs" />
     <Compile Include="Selenium\Pages\RegisterUserPage.cs" />
     <Compile Include="Selenium\TestHelpers.cs" />
     <Compile Include="Selenium\Waiter.cs" />
+    <Compile Include="Tests\PermissionsTest.cs" />
     <Compile Include="Tests\SetupAssemblyInitializer.cs" />
     <Compile Include="Tests\UserLoginTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

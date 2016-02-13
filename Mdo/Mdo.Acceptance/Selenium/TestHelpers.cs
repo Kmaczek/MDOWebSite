@@ -9,10 +9,18 @@ namespace Mdo.Acceptance.Selenium
 {
     static class TestHelpers
     {
-        public static string PageUrl
-        {
-            get { return @"http://localhost:22222/"; }
-        }
+        private static readonly Uri baseUri = new Uri(@"http://localhost:22222/");
+        private static readonly string userRegisterPath = "user/register";
+        private static readonly string userProfilePath = "profile";
+        private static readonly string messagesPath = "message";
+
+        public static string PageUrl => baseUri.ToString();
+
+        public static string UserProfileUrl => new Uri(baseUri, userProfilePath).ToString();
+
+        public static string UserRegisterUrl => new Uri(baseUri, userRegisterPath).ToString();
+
+        public static string MessagesUrl => new Uri(baseUri, messagesPath).ToString();
 
         public static void WaitSomeTime(int timeInMs = 100)
         {

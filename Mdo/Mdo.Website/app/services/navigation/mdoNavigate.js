@@ -3,6 +3,7 @@
         function ($location) {
             var to = {
                 main: goToMainPage,
+                userProfile: goToUserProfile,
                 messagePage: goToMessagePage
             };
 
@@ -14,6 +15,12 @@
 
             function goToMainPage() {
                 var path = '/';
+                target.path = path;
+                $location.path(path);
+            }
+
+            function goToUserProfile() {
+                var path = '/profile';
                 target.path = path;
                 $location.path(path);
             }

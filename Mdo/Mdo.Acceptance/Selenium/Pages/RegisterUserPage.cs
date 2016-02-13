@@ -45,12 +45,13 @@ namespace Mdo.Acceptance.Selenium.Pages
             }
         }
 
-        public RegisterUserPage(IWebDriver driver) : base(driver, TestHelpers.PageUrl+"/user/register")
+        public RegisterUserPage(IWebDriver driver) : base(driver, TestHelpers.UserRegisterUrl) //PageUrl+"/user/register"
         {
         }
 
         public void Register(string username, string email, string password, string repeat)
         {
+            // debounce is the time after which asynchronous validation in UI will kick in
             int debounce = 1020;
             this.UsernameInput.SendKeys(username);
             TestHelpers.WaitSomeTime(debounce);

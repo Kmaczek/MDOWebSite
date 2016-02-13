@@ -11,6 +11,7 @@
 
             function login() {
                 UserService.login($scope.username, $scope.password);
+                mdoNavigate.to.userProfile();
             }
 
             function logout() {

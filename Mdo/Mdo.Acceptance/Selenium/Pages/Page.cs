@@ -15,7 +15,7 @@ namespace Mdo.Acceptance.Selenium.Pages
         {
             this.Url = url;
             SetDriver(driver);
-            GoToPage();
+            CreateWaiter();
             InitializeElements();
         }
 
@@ -24,14 +24,14 @@ namespace Mdo.Acceptance.Selenium.Pages
             if (driver == null)
             {
                 this.Driver = new PhantomJSDriver();
+                this.Driver.Navigate().GoToUrl(this.Url);
+                this.Driver.Manage().Window.Maximize();
             }
             this.Driver = driver;
         }
 
-        private void GoToPage()
+        private void CreateWaiter()
         {
-            this.Driver.Navigate().GoToUrl(this.Url);
-            this.Driver.Manage().Window.Maximize();
             this.Wait = new WebDriverWait(driver: this.Driver, timeout: new TimeSpan(0, 0, 0, 100));
         }
 

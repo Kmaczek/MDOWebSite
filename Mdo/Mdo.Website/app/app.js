@@ -40,7 +40,15 @@
 
             .state('userRegistration', {
                 url: '/user/register',
-                templateUrl: 'app/view/registration/registration.template.html'
+                templateUrl: 'app/view/registration/registration.template.html',
+                data: {
+                    permissions: {
+                        except: ['authorized'],
+                        redirectTo: function () {
+                            return 'profile';
+                        }
+                    }
+                }
             })
 
             .state('message', {

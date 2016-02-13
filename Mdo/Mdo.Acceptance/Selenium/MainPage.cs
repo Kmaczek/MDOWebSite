@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Threading;
 using Mdo.Acceptance.Selenium.Elements;
+using Mdo.Acceptance.Selenium.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.PhantomJS;
 using OpenQA.Selenium.Support.UI;
@@ -15,12 +16,13 @@ namespace Mdo.Acceptance.Selenium
         public WebDriverWait Wait { get; private set; }
         private string url = TestHelpers.PageUrl;
         private ToastrMessages toasts;
+        private MessagesPage messages;
 
         public IWebElement LoginInput
         {
             get
             {
-                return Wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[1]/input")));
+                return Wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-navbar/div/div/div/form/ul/li[1]/input")));
             }
         }
 
@@ -28,28 +30,28 @@ namespace Mdo.Acceptance.Selenium
         {
             get
             {
-                return Wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[3]/input")));
+                return Wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-navbar/div/div/div/form/ul/li[3]/input")));
             }
         }
 
         public IWebElement LoginButton
         {
-            get { return Wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[4]/a"))); }
+            get { return Wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-navbar/div/div/div/form/ul/li[4]/a"))); }
         }
 
         public IWebElement RegisterButton
         {
-            get { return Wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/form/ul/li[5]/a"))); }
+            get { return Wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-navbar/div/div/div/form/ul/li[5]/a"))); }
         }
 
         public IWebElement LoginUsername
         {
-            get { return Wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/ul[2]/li"))); }
+            get { return Wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-navbar/div/div/div/ul[2]/li"))); }
         }
 
         public IWebElement LogoutButton
         {
-            get { return Wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-nav/div/div/div/ul[2]/li[2]/a"))); }
+            get { return Wait.Until(d => d.FindElement(By.XPath("/html/body/mdo-navbar/div/div/div/ul[2]/li[2]/a"))); }
         }
 
         public ReadOnlyCollection<IWebElement> ToastrMessages
@@ -61,6 +63,8 @@ namespace Mdo.Acceptance.Selenium
         }
 
         public ToastrMessages Toasts => toasts;
+
+        public MessagesPage MessagesPage => new MessagesPage(driver);
 
         public MainPage(IWebDriver driver)
         {
@@ -76,6 +80,11 @@ namespace Mdo.Acceptance.Selenium
             LoginButton.Click();
 
             TestHelpers.WaitForHttpRequest();
+        }
+
+        public void ValidLogin()
+        {
+            Login(UserWarehouse.StdUsername, UserWarehouse.StdPassword);
         }
 
         public void Logout()
@@ -119,6 +128,7 @@ namespace Mdo.Acceptance.Selenium
         private void InitializeElements()
         {
             toasts = new ToastrMessages(driver);
+//            messages = new MessagesPage(driver);
             TestHelpers.WaitSomeTime();
         }
 
@@ -128,11 +138,6 @@ namespace Mdo.Acceptance.Selenium
             driver.Manage().Window.Maximize();
             Wait = new WebDriverWait(driver: this.driver, timeout: new TimeSpan(0, 0, 0, 300));
         }
-
-//        private void WaitSomeTime(int timeInMs = 100)
-//        {
-//            Thread.Sleep(new TimeSpan(0, 0, 0, 0, timeInMs));
-//        }
 
         public void Cleanup()
         {

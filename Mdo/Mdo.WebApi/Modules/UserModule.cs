@@ -122,7 +122,6 @@ namespace Mdo.WebApi.Modules
                 {
                     try
                     {
-
                         var usernameExists = userRepository.GetByName(model.Username);
                         if (usernameExists != null)
                         {
@@ -175,9 +174,7 @@ namespace Mdo.WebApi.Modules
 
         private void Initialize()
         {
-            //            userRepository = new UserRepository();
             tokens = new List<CsrfToken>();
-
             //this.RequiresHttps();
         }
     }
