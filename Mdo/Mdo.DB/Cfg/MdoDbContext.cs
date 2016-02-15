@@ -7,6 +7,8 @@ namespace Mdo.DB.Cfg
     {
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<RoleEntity> Roles { get; set; }
+        public DbSet<ExpansionEntity> Expansions { get; set; }
+        public DbSet<CardEntity> Cards { get; set; }
 
         public MdoDbContext()
             : base("name=MdoDbContext")

@@ -21,8 +21,8 @@ namespace Mdo.Website
 
         protected override void ConfigureConventions(NancyConventions nancyConventions)
         {
-            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder
-                .AddDirectory("app", @"app"));
+            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("app", @"app"));
+            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("mdo_images", @"mdo_images"));
         }
 
 #if DEBUG

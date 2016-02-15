@@ -2,4 +2,11 @@
     <h1>CARDS</h1>
     <p>sadfasdfas</p>
     <p>assadfasdf</p>
+    <button class="btn btn-default" ng-click="fetch()">Cards!</button>
+
+    <ul>
+        <li ng-repeat="exp in expansions">
+            <img ng-src="{{exp.imagePath}}"/>
+        </li>
+    </ul>
 </div>

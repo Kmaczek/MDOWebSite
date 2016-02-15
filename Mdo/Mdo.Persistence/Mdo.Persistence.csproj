@@ -51,7 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\CardAdapter.cs" />
+    <Compile Include="Adapters\ExpansionAdapter.cs" />
     <Compile Include="Adapters\UserAdapter.cs" />
+    <Compile Include="Implementations\CardsRepository.cs" />
+    <Compile Include="Interfaces\ICardsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="UserRepository.cs" />

@@ -206,6 +206,9 @@
     <Content Include="app\scripts\toastr\angular-toastr.tpls.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="app\services\apiConsumed\cardsService.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="app\services\apiConsumed\userService.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -406,6 +409,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="app\scripts\momentjs\moment.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mdo_images\cards\Akroan_Jailer.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mdo_images\expansions\origins.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

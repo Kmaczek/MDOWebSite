@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomBootstraper.cs" />
+    <Compile Include="Modules\CardsModule.cs" />
     <Compile Include="Modules\UserModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using Mdo.Persistence;
+using Mdo.Persistence.Implementations;
 using Mdo.Persistence.Interfaces;
 using Nancy;
 using Nancy.Bootstrapper;
@@ -40,6 +41,7 @@ namespace Mdo.WebApi
         private static void RegisterDependencies(TinyIoCContainer container)
         {
             container.Register<IUserRepository, UserRepository>();
+            container.Register<ICardsRepository, CardsRepository>();
         }
 
         private static void RegisterTestDependencies(TinyIoCContainer container)

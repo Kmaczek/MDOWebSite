@@ -57,6 +57,8 @@
   <ItemGroup>
     <Compile Include="Cfg\MdoDbContext.cs" />
     <Compile Include="Cfg\MdoDBInitializer.cs" />
+    <Compile Include="Entities\CardEntity.cs" />
+    <Compile Include="Entities\ExpansionEntity.cs" />
     <Compile Include="Entities\RoleEntity.cs" />
     <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="Migrations\Configuration.cs" />

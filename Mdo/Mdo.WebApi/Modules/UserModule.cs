@@ -48,7 +48,7 @@ namespace Mdo.WebApi.Modules
                 if (email == null)
                 {
                     logger.Debug("email {0} not found", o.email);
-                    return Response.AsJson(new { Message = String.Format("Resource [{0}] was not found", o.email) }, HttpStatusCode.NotFound);
+                    return Response.AsJson(new { Message = String.Format("Resource [{0}] was not found.", o.email) }, HttpStatusCode.NotFound);
                 }
                 return Response.AsJson(new { Email = o.email });
             };
@@ -70,7 +70,7 @@ namespace Mdo.WebApi.Modules
                     });
                 }
 
-                return Response.AsJson(new ResponseMessage() { Message = "Not Authenticated" }, HttpStatusCode.Unauthorized);
+                return Response.AsJson(new ResponseMessage() { Message = "Not Authenticated." }, HttpStatusCode.Unauthorized);
             };
         }
 
@@ -125,20 +125,20 @@ namespace Mdo.WebApi.Modules
                         var usernameExists = userRepository.GetByName(model.Username);
                         if (usernameExists != null)
                         {
-                            logger.Debug("username {0} already exists", model.Username);
+                            logger.Debug("username {0} already exists.", model.Username);
                             return ReturnInvalidInput("Username already exists");
                         }
 
                         var emailUsed = userRepository.GetByEmail(model.Email);
                         if (emailUsed != null)
                         {
-                            logger.Debug("email {0} already exists", model.Email);
+                            logger.Debug("email {0} already exists.", model.Email);
                             return ReturnInvalidInput("Provided email is already used");
                         }
 
                         if (!MdoSecurity.IsPsswordValid(model.Password))
                         {
-                            logger.Debug("invalid password");
+                            logger.Debug("invalid password.");
                             return ReturnInvalidInput("Password is to short");
                         }
 
@@ -147,14 +147,14 @@ namespace Mdo.WebApi.Modules
                     }
                     catch (Exception e)
                     {
-                        logger.Error(e, "Could not add new user. Server error {0}", e.Message);
+                        logger.Error(e, "Could not add new user. Server error: {0}. ", e.Message);
                         return Response.AsJson(new ResponseMessage() { Message = "Could not add user" }, HttpStatusCode.InternalServerError);
                     }
 
                     return Response.AsJson(new ResponseMessage() { Message = "Registration Successfull" });
                 }
 
-                logger.Debug("problem with parsing data from request body");
+                logger.Debug("problem with parsing data from request body.");
                 return Response.AsJson(new ResponseMessage() { Message = "Cannot process passed data. Most likely invalid format" }, HttpStatusCode.BadRequest);
             };
         }

@@ -54,12 +54,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CardModel.cs" />
     <Compile Include="Dtos\LoginDto.cs" />
     <Compile Include="Dtos\LoginModel.cs" />
     <Compile Include="Dtos\ResponseMessage.cs" />
     <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Dtos\UserRegistrationDto.cs" />
     <Compile Include="Dtos\UserSettings.cs" />
+    <Compile Include="Models\ExpansionModel.cs" />
     <Compile Include="UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
