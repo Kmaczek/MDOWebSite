@@ -1,12 +1,12 @@
 ﻿<div ng-controller="cardsCtrl">
     <h1>CARDS</h1>
-    <p>sadfasdfas</p>
-    <p>assadfasdf</p>
     <button class="btn btn-default" ng-click="fetch()">Cards!</button>
 
-    <ul>
-        <li ng-repeat="exp in expansions">
-            <img ng-src="{{exp.imagePath}}"/>
-        </li>
-    </ul>
+    <div class="container-fluid">
+        <div class="card-inline">
+            <div ng-repeat="card in cards" class="card-box">
+                <img ng-src="{{card.imagePath}}" class="img-responsive" />
+            </div>
+        </div>
+    </div>
 </div>

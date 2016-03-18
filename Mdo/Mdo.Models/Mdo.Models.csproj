@@ -55,13 +55,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CardModel.cs" />
+    <Compile Include="Dtos\CardDto.cs" />
+    <Compile Include="Dtos\DetailedCardDto.cs" />
+    <Compile Include="Dtos\FixLabelDto.cs" />
     <Compile Include="Dtos\LoginDto.cs" />
     <Compile Include="Dtos\LoginModel.cs" />
     <Compile Include="Dtos\ResponseMessage.cs" />
+    <Compile Include="Dtos\FetchImageDto.cs" />
     <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Dtos\UserRegistrationDto.cs" />
     <Compile Include="Dtos\UserSettings.cs" />
     <Compile Include="Models\ExpansionModel.cs" />
+    <Compile Include="Models\TypeModel.cs" />
     <Compile Include="UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

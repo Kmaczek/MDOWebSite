@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Security.Cryptography;
+using Mdo.Common.Scraping;
 using Mdo.Core;
 using Mdo.Models;
 using Mdo.Models.Dtos;
@@ -27,6 +28,9 @@ namespace Mdo.WebApi.Modules
 
             LoginUser();
             RegisterUser();
+
+//            var pageScrapper = new PageScrapper();
+//            pageScrapper.ScrapCards();
 
 
             Get["/{username}"] = o =>

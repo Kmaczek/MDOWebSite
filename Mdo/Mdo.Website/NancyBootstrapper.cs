@@ -1,4 +1,5 @@
-﻿using Mdo.Website.NancyConfig;
+﻿using System.IO;
+using Mdo.Website.NancyConfig;
 using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Conventions;
@@ -22,7 +23,6 @@ namespace Mdo.Website
         protected override void ConfigureConventions(NancyConventions nancyConventions)
         {
             nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("app", @"app"));
-            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("mdo_images", @"mdo_images"));
         }
 
 #if DEBUG

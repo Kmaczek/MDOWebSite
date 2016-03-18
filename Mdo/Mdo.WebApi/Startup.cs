@@ -6,6 +6,7 @@ namespace Mdo.WebApi
     {
         public void Configuration(IAppBuilder app)
         {
+            app.UseStaticFiles("/mdo_images");
             app.UseNancy();
         }
     }

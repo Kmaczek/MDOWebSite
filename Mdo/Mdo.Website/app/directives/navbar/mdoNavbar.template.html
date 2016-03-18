@@ -20,6 +20,7 @@
                 </ul>
             </form>
             <ul ng-show="shared.isloggedIn" class="nav navbar-nav navbar-right">
+                <li ui-sref-active="active"><a ui-sref="administrate">Administrate</a></li>
                 <li class="nav-text-centered">Loged in as: <span class="nav-username">{{shared.sessionData.username}}</span></li>
                 <li><a href="#" ng-click="logout()">Logout</a></li>
             </ul>

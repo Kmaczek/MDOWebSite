@@ -1,5 +1,4 @@
 ﻿using Mdo.DB.Entities;
-using Mdo.Models;
 using Mdo.Models.Models;
 
 namespace Mdo.Persistence.Adapters

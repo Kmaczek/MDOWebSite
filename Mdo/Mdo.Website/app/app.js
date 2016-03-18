@@ -62,6 +62,21 @@
                     }
                 },
                 templateUrl: 'app/view/message/message.template.html'
+            })
+
+            .state('administrate', {
+                url: '/administrate',
+                templateUrl: 'app/view/administrate/administrate.template.html',
+                data: {
+                    permissions: {
+                        only: ['admin'],
+                        redirectTo: function () {
+                            messageToDisplay = 'Unauthorized';
+                            backState = '/administrate';
+                            return 'message';
+                        }
+                    }
+                }
             });
 
         angular.extend(toastrConfig, {

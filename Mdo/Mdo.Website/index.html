@@ -29,6 +29,7 @@
     <script type="text/javascript" src="app/services/resources/userResource.js"></script>
     <script type="text/javascript" src="app/services/apiConsumed/userService.js"></script>
     <script type="text/javascript" src="app/services/apiConsumed/cardsService.js"></script>
+    <script type="text/javascript" src="app/services/apiConsumed/adminService.js"></script>
 
     <script type="text/javascript" src="app/directives/navbar/mdoNavbar.js"></script>
 
@@ -42,6 +43,7 @@
     <script type="text/javascript" src="app/view/registration/validation/required.js"></script>
     <script type="text/javascript" src="app/view/registration/validation/passRepeat.js"></script>
     <script type="text/javascript" src="app/view/registration/registrationCtrl.js"></script>
+    <script type="text/javascript" src="app/view/administrate/administrateCtrl.js"></script>
     <script type="text/javascript" src="app/view/cards/cardsCtrl.js"></script>
 
     <base href="/" />
@@ -49,13 +51,11 @@
 </head>
 <body ng-app="mdo">
     <mdo-navbar></mdo-navbar>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6 mdo-content">
+    <div class="fluid-content">
+        <div class="">
+            <div class="mdo-content">
                 <ui-view></ui-view>
             </div>
-            <div class="col-md-3"></div>
         </div>
     </div>
 

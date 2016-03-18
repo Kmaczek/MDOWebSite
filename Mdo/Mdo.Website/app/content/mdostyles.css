@@ -1,4 +1,7 @@
-﻿body {
+﻿html {
+  overflow-y: scroll; }
+
+body {
   color: #191919;
   background-color: #dcdcdc;
   background: url("img/mdo-bg.jpg") no-repeat center center fixed;
@@ -8,9 +11,41 @@
   background-size: cover;
   padding-top: 60px; }
 
+#style-1::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5; }
+
+.mdo-content {
+  background-color: rgba(82, 131, 152, 0.87);
+  margin: 0 auto; }
+
+@media (min-width: 1280px) {
+  .mdo-content {
+    width: 1200px;
+    padding: 5px 30px; } }
+
+@media (max-width: 1280px) {
+  .mdo-content {
+    width: 1000px;
+    padding: 5px 30px; } }
+
+@media (max-width: 1024px) {
+  .mdo-content {
+    width: 750px;
+    padding: 5px 30px; } }
+
 @media (max-width: 768px) {
   body {
-    padding-top: 90px; } }
+    padding-top: 90px; }
+  .mdo-content {
+    width: 500px;
+    padding: 5px 10px; } }
+
+@media (max-width: 384px) {
+  .mdo-content {
+    width: 270px;
+    padding: 5px 5px; } }
 
 .navbar-brand > img {
   max-height: 100%;
@@ -22,11 +57,11 @@
   width: 140px;
   margin-left: 10px; }
 
+.fluid-content {
+  padding-bottom: 60px; }
+
 .mdo-footer {
   color: #dcdcdc; }
-
-.mdo-content {
-  background-color: rgba(82, 131, 152, 0.89); }
 
 .input-margin {
   margin-top: 7px; }
@@ -65,4 +100,18 @@
 
 .reg-submit {
   margin-bottom: 20px; }
+
+.admin-card-row {
+  border-bottom: 2px solid rgba(16, 207, 226, 0.6);
+  margin-bottom: 3px; }
+
+.card-inline {
+  overflow: auto;
+  width: 96%;
+  margin: 0 auto; }
+
+.card-box {
+  margin: 5px 5px;
+  display: inline-block;
+  width: 200px; }
 

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Configuration;
+using System.IO;
+using Mdo.Common;
+using Mdo.WebApi.Setup;
 using Microsoft.Owin.Hosting;
 using NLog;
 
@@ -11,12 +14,12 @@ namespace Mdo.WebApi
         static void Main(string[] args)
         {
             SetConsole();
-            var url = ConfigurationManager.AppSettings.Get("siteHostUrl");
+            EstablishFileStructure();
 
-            using (WebApp.Start<Startup>(url))
+            using (WebApp.Start<Startup>(ApplicationInfo.Instance.HostUri))
             {
                 logger.Info("Website Host started");
-                logger.Info("Hosting on: " + url);
+                logger.Info("Hosting on: " + ApplicationInfo.Instance.HostUri);
                 Console.ReadLine();
             }
         }
@@ -26,6 +29,27 @@ namespace Mdo.WebApi
             Console.WindowHeight = Console.LargestWindowHeight - 10;
             Console.WindowWidth = 100;
             Console.BufferHeight = 1000;
+        }
+
+        private static void EstablishFileStructure()
+        {
+            if (!Directory.Exists(Path.Combine(Environment.CurrentDirectory, ApplicationInfo.Instance.CardSavePath)))
+            {
+                Directory.CreateDirectory(Path.Combine(Environment.CurrentDirectory,
+                    ApplicationInfo.Instance.CardSavePath));
+            }
+
+            if (!Directory.Exists(Path.Combine(Environment.CurrentDirectory, ApplicationInfo.Instance.LabelsPath)))
+            {
+                Directory.CreateDirectory(Path.Combine(Environment.CurrentDirectory,
+                    ApplicationInfo.Instance.LabelsPath));
+            }
+
+            if (!Directory.Exists(Path.Combine(Environment.CurrentDirectory, ApplicationInfo.Instance.ExpansionsPath)))
+            {
+                Directory.CreateDirectory(Path.Combine(Environment.CurrentDirectory,
+                    ApplicationInfo.Instance.ExpansionsPath));
+            }
         }
     }
 }

@@ -1,0 +1,77 @@
+﻿<div ng-controller="administrateCtrl">
+    <h1>ADMINISTRATION</h1>
+
+    <input ng-model="inputs.cardName" />
+    <button class="btn btn-default btn-sm" ng-click="getCard()">Get Card</button>
+    <button class="btn btn-default btn-sm" ng-click="">Empty</button>
+    <button class="btn btn-default btn-sm" ng-click="scrap()">Scrap!</button>
+    <br/>
+    <div ng-if="card" class="container-fluid">
+        <div class="row admin-card-row">
+            <div class="col-md-2"><label>Name: </label></div>
+            <div class="col-md-4">{{card.name}}</div>
+        </div>
+        <div class="row admin-card-row">
+            <div class="col-md-2"><label>Label image: </label></div>
+            <div class="col-md-4"><img ng-src="{{labelUrl}}"/></div>
+            <div class="col-md-6"><input ng-model="inputs.offset" /><button class="btn btn-default btn-xs" ng-click="createLabel()">Create Label</button></div>
+        </div>
+        <div class="row admin-card-row">
+            <div class="col-md-2"><label>Image: </label></div>
+            <div class="col-md-4"><img type="number" ng-src="{{imageUrl}}"/></div>
+            <div class="col-md-6"><input ng-model="inputs.cardImageUrl" /><button class="btn btn-default btn-xs" ng-click="downloadImage()">Download Image</button></div>
+        </div>
+        <div class="row admin-card-row">
+            <div class="col-md-2"><label>Types: </label></div>
+            <div class="col-md-4">
+                <ul>
+                    <li ng-repeat="type in card.types">
+                        {{type}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row admin-card-row">
+            <div class="col-md-2"><label>Mana: </label></div>
+            <div class="col-md-4">{{card.convertedManaCost}}</div>
+        </div>
+        <div class="row admin-card-row">
+            <div class="col-md-2"><label>Mana Detailed: </label></div>
+            <div class="col-md-4">[R: {{card.redMana}}] [U: {{card.blueMana}}] [G: {{card.greenMana}}] [W: {{card.whiteMana}}] [B: {{card.blackMana}}] [C: {{card.colorlessMana}}]</div>
+        </div>
+        <div class="row admin-card-row">
+            <div class="col-md-2"><label>Description: </label></div>
+            <div class="col-md-4">{{card.description}}</div>
+        </div>
+        <div class="row admin-card-row">
+            <div class="col-md-2"><label>Flavor: </label></div>
+            <div class="col-md-4">{{card.flavor}}</div>
+        </div>
+        <div class="row admin-card-row">
+            <div class="col-md-2"><label>P/T: </label></div>
+            <div class="col-md-4">{{card.power}}/{{card.thoughnes}}</div>
+        </div>
+        <div class="row admin-card-row">
+            <div class="col-md-2"><label>Loyalty: </label></div>
+            <div class="col-md-4">{{card.loyalty}}</div>
+        </div>
+        <div class="row admin-card-row">
+            <div class="col-md-2"><label>Expansion: </label></div>
+            <div class="col-md-4">{{card.expansion}}</div>
+        </div>
+        <div class="row admin-card-row">
+            <div class="col-md-2"><label>Rarity: </label></div>
+            <div class="col-md-4">{{card.rarity}}</div>
+        </div>
+        <div class="row admin-card-row">
+            <div class="col-md-2"><label>Image Path: </label></div>
+            <div class="col-md-4">{{card.imagePath}}</div>
+        </div>
+        <div class="row admin-card-row">
+            <div class="col-md-2"><label>Label Path: </label></div>
+            <div class="col-md-4">{{card.labelPath}}</div>
+        </div>
+
+    </div>
+
+</div>

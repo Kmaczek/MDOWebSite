@@ -18,8 +18,9 @@ namespace Mdo.DB.Cfg
 
         private readonly IList<ExpansionEntity> Expansions = new List<ExpansionEntity>()
         {
-            new ExpansionEntity() {ExpansionId = 1, ImagePath = @"mdo_images/expansions/origins.png", Name = "First", Started = DateTime.Today.AddDays(-30)},
-            new ExpansionEntity() {ExpansionId = 2, ImagePath = @"mdo_images/expansions/origins.png", Name = "Second", Started = DateTime.Today}
+            new ExpansionEntity() {ExpansionId = 1, ImagePath = @"mdo_images/expansions/starter.png", Name = "Starter set", Started = new DateTime(2015, 6, 17)},
+            new ExpansionEntity() {ExpansionId = 2, ImagePath = @"mdo_images/expansions/origins.png", Name = "Origins", Started = new DateTime(2015, 6, 17)},
+            new ExpansionEntity() {ExpansionId = 3, ImagePath = @"mdo_images/expansions/battle_for_zendikar.png", Name = "Battle for Zendikar", Started = new DateTime(2015, 10, 2)}
         };
 
         private readonly IList<UserEntity> Users = new List<UserEntity>()
@@ -31,8 +32,6 @@ namespace Mdo.DB.Cfg
 
         private readonly IList<CardEntity> Cards = new List<CardEntity>()
         {
-            new CardEntity() { Name = "qwe", BlackMana = 1, BlueMana = 1, ColorlessMana = 2, CardType = "creature", ExpansionId = 1},
-            new CardEntity() { Name = "qwe", RedMana = 1, BlueMana = 1, ColorlessMana = 1, CardType = "spell", ExpansionId = 2}
         };
 
         public void Seed(MdoDbContext context)
@@ -70,16 +69,16 @@ namespace Mdo.DB.Cfg
             var zxx = context.Users.First(x => x.Username == "zxx");
             var zcc = context.Users.First(x => x.Username == "zcc");
 
-            wes.Roles = new List<RoleEntity> {std, admin, mod};
+            wes.Roles = new List<RoleEntity> { std, admin, mod };
 
-            zxx.Roles = new List<RoleEntity> {std};
+            zxx.Roles = new List<RoleEntity> { std };
 
-            zcc.Roles = new List<RoleEntity> {admin};
+            zcc.Roles = new List<RoleEntity> { admin };
         }
 
         private void AddExpansionsToCards(MdoDbContext context)
         {
-            
+
         }
 
         private static class RoleNames

@@ -60,6 +60,8 @@
     <Compile Include="Entities\CardEntity.cs" />
     <Compile Include="Entities\ExpansionEntity.cs" />
     <Compile Include="Entities\RoleEntity.cs" />
+    <Compile Include="Entities\TagEntity.cs" />
+    <Compile Include="Entities\TypeEntity.cs" />
     <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
